@@ -1,4 +1,5 @@
 .background {
+    z-index: -1;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -7,14 +8,17 @@
 }
 
 .content-view-container {
+    z-index: -1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     position: absolute;
-    left: calc(calc(100vw - 70vw)/2);
-    top: 94px;
+    left: 50%;
+    top: 70px;
+    transform: translate(-50%, 0);
     width: 70vw;
     height: 80vh;
-    background: white;
+    background: var(--box-background-color);
 }

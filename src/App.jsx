@@ -4,8 +4,13 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 import ContentView from './components/ContentView/ContentView'
 import { userContext } from '@/contexts/contexts'
 
+const placeholderUser = {
+  name: "Some Guy",
+
+}
+
 function App() {
-  const [currentUser, setCurrentUser] = useState({})
+  const [currentUser, setCurrentUser] = useState(placeholderUser)
 
   return (
     <>
