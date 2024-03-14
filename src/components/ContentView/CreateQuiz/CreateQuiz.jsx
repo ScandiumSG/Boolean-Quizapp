@@ -13,8 +13,8 @@ const template = Object.fromEntries(Object.entries(primaryFields).map(([key, _])
 const CreateQuiz = () => {
     const [quizData, setQuizData] = useState(template)
 
-    const handleChange = (e, truthy) => {
-        setQuizData({...quizData, [e.target.id]: [e.target.value, truthy]})
+    const handleChange = (fieldId, fieldValue, truthy) => {
+        setQuizData({...quizData, [fieldId]: [fieldValue, truthy]})
     }
 
     useEffect(() => {

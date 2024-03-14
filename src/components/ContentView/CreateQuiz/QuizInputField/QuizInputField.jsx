@@ -4,7 +4,22 @@ import { useState } from 'react'
 
 const QuizInputField = ({ labelTitle, quizData, quizTitle, changeFunction}) => {
     const [fieldIsCorrect, setFieldIsCorrect] = useState(false)
+    const [fieldValue, setFieldValue] = useState(quizData[quizTitle[0]])
 
+    const handleTextChange = (e) => {
+        setFieldValue(e.target.value)
+        changeFunction(quizTitle, e.target.value, fieldIsCorrect)
+    }
+
+    const handleRadioChange = (e) => {
+        if (e.target.value === "true") {
+            setFieldIsCorrect(true)
+            changeFunction(quizTitle, fieldValue, true)
+        } else {
+            setFieldIsCorrect(false)
+            changeFunction(quizTitle, fieldValue, false)
+        }
+    }
 
     return (
         <>
@@ -13,19 +28,21 @@ const QuizInputField = ({ labelTitle, quizData, quizTitle, changeFunction}) => {
                 type="text"
                 id={quizTitle}
                 value={quizData[quizTitle[0]]}
-                onChange={(e) => changeFunction(e, fieldIsCorrect)}
+                onChange={(e) => handleTextChange(e)}
             />
             <input 
+                checked={!fieldIsCorrect}
                 type="radio"
                 name={quizTitle + "_radio"}
                 value={false}
-                onClick={(e) => setFieldIsCorrect(e.target.value)}
+                onChange={(e) => handleRadioChange(e)}
             />
             <input 
+                checked={fieldIsCorrect}
                 type="radio"
                 name={quizTitle + "_radio"}
                 value={true}
-                onClick={(e) => setFieldIsCorrect(e.target.value)}
+                onChange={(e) => handleRadioChange(e)}
             />
         </>
     )
