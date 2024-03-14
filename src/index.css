@@ -7,6 +7,7 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
+  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -65,4 +66,9 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.spaced-background {
+  background: rgb(0,0,0);
+  background: linear-gradient(32deg, rgba(0,0,0,0.9177871832326681) 0%, rgba(33,0,46,1) 19%, rgba(97,0,68,1) 22%, rgba(33,2,29,1) 25%, rgba(24,39,97,1) 61%, rgba(87,54,9,0.9934174353335085) 62%, rgba(43,26,71,1) 64%, rgba(0,59,125,1) 100%);
 }
