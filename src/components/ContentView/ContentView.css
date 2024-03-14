@@ -1,0 +1,20 @@
+.background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: calc(100vh - 0px);
+    width: 100vw;
+}
+
+.content-view-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    position: absolute;
+    left: calc(calc(100vw - 70vw)/2);
+    top: 94px;
+    width: 70vw;
+    height: 80vh;
+    background: white;
+}

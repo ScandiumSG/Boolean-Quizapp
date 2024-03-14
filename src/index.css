@@ -12,6 +12,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --header-background-color: #6cb3f2;
+  --primary-text-color: #cfff98;
+  --box-background-color: lightgray;
 }
 
 a {
@@ -70,5 +74,4 @@ button:focus-visible {
 
 .spaced-background {
   background: rgb(0,0,0);
-  background: linear-gradient(32deg, rgba(0,0,0,0.9177871832326681) 0%, rgba(33,0,46,1) 19%, rgba(97,0,68,1) 22%, rgba(33,2,29,1) 25%, rgba(24,39,97,1) 61%, rgba(87,54,9,0.9934174353335085) 62%, rgba(43,26,71,1) 64%, rgba(0,59,125,1) 100%);
-}
+  background: linear-gradient(32deg, rgba(0,0,0,0.9177871832326681) 0%, rgba(13,0,18,1) 19%, rgba(56,0,39,1) 22%, rgba(2,3,40,1) 25%, rgba(33,13,59,1) 44%, rgba(36,0,46,1) 45%, rgba(16,16,44,1) 53%, rgba(17,26,64,1) 83%, rgba(51,44,20,1) 85%, rgba(23,14,38,1) 87%, rgba(0,20,42,1) 100%);
