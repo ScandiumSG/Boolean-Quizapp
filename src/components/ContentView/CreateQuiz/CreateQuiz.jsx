@@ -1,38 +1,141 @@
+/* eslint-disable no-unused-vars */
 import "./CreateQuiz.css"
 import { useState, useEffect } from 'react'
 import QuizInputField from "./QuizInputField/QuizInputField"
+import QuizInputMetaField from "./QuizInputMetaField/QuizInputMetaField";
+import QuizInputQuestionField from "./QuizInputQuestionField/QuizInputQuestionField";
 
 const primaryFields = {
     "title": "Quiz title",
     "description": "Quiz description",
+    "questions": [
+        {
+            "0_question": "Biggest desert?",
+            "0_options": {
+                "option_1": ["Sahara", false],
+                "option_2": ["Gobi", false],
+                "option_3": ["Antartica", true],
+                "option_4": ["Nevada", false]
+            },
+        }, {
+            "1_question": "Biggest desert?",
+            "1_options": {
+                "option_1": ["Sahara", false],
+                "option_2": ["Gobi", false],
+                "option_3": ["Antartica", true],
+                "option_4": ["Nevada", false]
+            },
+        },
+    ]
 }
 
-// eslint-disable-next-line no-unused-vars
-const template = Object.fromEntries(Object.entries(primaryFields).map(([key, _]) => [key, ["", false]]));
+const generateEmptyTemplate = (obj) => {
+    const res = {};
+
+    for (const [key, value] of Object.entries(obj)) {
+        if (Array.isArray(value)) {
+            res[key] = value.map((question) => generateEmptyTemplate(question))
+        } else if (typeof value === "object" && value !== null) {
+            if (Object.keys(value).some((k) => k.startsWith("option_"))) {
+                res[key] = Object.fromEntries(
+                    Object.entries(value).map(([optionKey, optionValue]) => [optionKey, ["", optionValue[1]]])
+                )
+            } else {
+                res[key] = generateEmptyTemplate(value)
+            }
+        } else {
+            res[key] = Array.isArray(value) ? value.map(() => ""): "";
+        }
+    }
+
+    return res
+}
 
 const CreateQuiz = () => {
-    const [quizData, setQuizData] = useState(template)
+    const [quizData, setQuizData] = useState(generateEmptyTemplate(primaryFields))
 
-    const handleChange = (fieldId, fieldValue, truthy) => {
-        setQuizData({...quizData, [fieldId]: [fieldValue, truthy]})
+    const handleMetaChange = (e) => {
+        setQuizData({...quizData, [e.target.id]: e.target.value})
+    }
+
+    const handleQuestionTextChange = (event, questionIndex) => {
+        const modifiedQuestions = quizData.questions.map((question, index) => {
+            // If true, we need to make changes then return
+            if (index === questionIndex) {
+                return {...question, [`${questionIndex}_question`]: event.target.value} 
+            } else {
+                return question
+            }
+        })
+        setQuizData({...quizData, questions: modifiedQuestions})
+    }
+
+    const handleQuestionChange = (questionIndex, fieldIdentifier, fieldValue, truthy) => {
+        const modifiedQuestions = quizData.questions.map((question, index) => {
+            // If true, we need to make changes then return
+            if (index === questionIndex) {
+                const newValue = [fieldValue, truthy]
+                return {
+                    ...question, [`${questionIndex}_options`]: {
+                        ...(question[`${questionIndex}_options`] || {}), 
+                            [fieldIdentifier]: newValue
+                    }
+                } 
+            } else {
+                return question
+            }
+        })
+
+        setQuizData({...quizData, questions: modifiedQuestions})
     }
 
     useEffect(() => {
-        console.log(quizData)
+        //console.log(quizData)
     }, [quizData])
 
+    if (!quizData) {
+        return (<div>Loading...</div>)
+    }
+
     return (
-        <div>
-            <div>This is the page to create a new quiz</div>
-            {Object.entries(primaryFields).map(([title, description]) => 
-                    <QuizInputField 
-                        key={title}
-                        labelTitle={description}
-                        quizTitle={title}
+        <div className="create-quiz-container">
+            <h2>This is the page to create a new quiz</h2>
+            <div className="question-container">
+            <QuizInputMetaField
+                labelTitle={"Quiz name"}
+                fieldIdentifier={"title"}
+                quizData={quizData}
+                changeFunction={handleMetaChange}
+            />
+            <QuizInputMetaField
+                labelTitle={"Quiz description"}
+                fieldIdentifier={"description"}
+                quizData={quizData}
+                changeFunction={handleMetaChange}
+            />
+            </div>
+            {Object.entries(quizData.questions).map(([key, option]) => 
+                <div key={key} id={"question-container-"+(parseInt(key)+1)} className="question-container">
+                    <QuizInputQuestionField
+                        key={key}
+                        questionIndex={parseInt(key)}
+                        labelTitle={"Question " + (parseInt(key)+1) + ":"}
+                        fieldIdentifier={`${key}_question`}
                         quizData={quizData}
-                        changeFunction={handleChange}
-                    />  
-                )}
+                        changeFunction={handleQuestionTextChange}
+                    />
+                    {(Object.entries(option[(parseInt(key))+"_options"])).map(([optionKey, _]) => 
+                            <QuizInputField 
+                            key={optionKey}
+                            labelTitle={optionKey.replace("_", " ")}
+                            parentIdentifier={parseInt(key)}
+                            fieldIdentifier={optionKey}
+                            quizData={quizData}
+                            changeFunction={handleQuestionChange}
+                            />
+                    )}
+                </div>
+            )}
         </div>
     )
 }

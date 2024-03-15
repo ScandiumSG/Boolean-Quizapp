@@ -1,0 +1,7 @@
+.quiz-label-container.question-options {
+    display: grid;
+    grid-template-columns: 200px 350px 30px 30px;
+    margin-left: 70px;
+
+    margin-bottom: 10px;
+}

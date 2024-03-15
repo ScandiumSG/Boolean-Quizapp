@@ -1,3 +1,39 @@
+.create-quiz-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    position: absolute;
+    top: 0px;
+    padding: 40px;
+    width: calc(100% - 80px - 40px);
+}
+
+
+.quiz-label-container {
+    display: grid;
+    grid-template-columns: 250px 350px 30px 30px;
+
+    margin-bottom: 20px;
+}
+
+.question-container {
+    border: solid 1px darkgray;
+    border-radius: 20px;
+    background: var(--box-background-color);
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+label {
+    color: var(--primary-text-color)
+}
+
 input[type="text"] {
     color: white;
+    border-radius: 20px;
+    height: 2em;
+    width: 250px;
+    padding-left: 20px;
 }

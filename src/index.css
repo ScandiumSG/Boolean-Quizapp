@@ -6,7 +6,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
+  font-size: 20px;
   
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -33,6 +33,11 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+input[type="text"] {
+  color: var(--primary-text-color);
+  font-size: 18px;
 }
 
 h1 {
