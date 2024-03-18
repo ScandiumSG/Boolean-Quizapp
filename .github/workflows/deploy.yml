@@ -3,8 +3,16 @@ on:
   push:
     branches:
       - main
-jobs:
+  push:
+    tags:
+      - 'generate_preview'
+  pull_request:
+    types: [closed]
+    branches:
+      - main
 
+
+jobs:
   deploy:
     name: Request Host Webhook
     runs-on: ubuntu-latest
