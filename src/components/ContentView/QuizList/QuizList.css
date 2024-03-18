@@ -1,0 +1,112 @@
+.quiz-list-page {
+    margin-top: 25px;
+    height: 100%;
+}
+
+.quiz-list-page> .page-header {
+    font-size: 1.8rem;
+    width: 50%;
+    margin: 0 auto 0 auto;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.quiz-list {
+    padding: 1rem 0 1rem 0;
+    margin: 1rem 0 7.5rem 0;
+    width: 100%;
+    max-height: 90%;
+    display: grid;
+    grid-template-columns: 25rem 25rem;
+    gap: 1.5rem;
+    justify-content: center;
+    overflow-y: auto;
+    scrollbar-width: 0;
+}
+
+.quiz-list::-webkit-scrollbar {
+    display: none;
+}
+
+.quiz-list-item {
+    background-image:
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px),
+    radial-gradient(circle, rgb(68, 28, 114) 10%, rgb(201, 35, 137) 75%);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 150px 200px, 130px 150px, 300px 300px;
+    background-attachment: fixed;
+    transition: transform 0.2s ease;
+    border-radius: 1rem;
+    padding: 0 1rem 0 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.quiz-list-item:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.quiz-list-item > * {
+    color: white;
+    margin: 1rem 0 1rem 0;
+}
+
+.quiz-list-item-title {
+    font-size: 1.1rem;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid white;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.quiz-list-item-description {
+    width: 100%;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9rem;
+    line-height: 1.2em;
+    height: 3.6em;
+    max-height: 3.6em;
+    word-wrap: break-word;
+}
+
+.quiz-list-item-footer {
+    margin-top: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.quiz-list-item-footer > p {
+    font-size: .75rem;
+}
+
+.quiz-list-item-num-questions {
+    font-weight: 600;
+}
+
+.quiz-list-item-author {
+    font-weight: 400;
+}
+
+
+
+
+@media (max-width: 1500px) {
+    .quiz-list {
+        grid-template-columns: 29rem;
+    }
+}
