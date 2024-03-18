@@ -11,8 +11,7 @@
 
 
 .quiz-label-container {
-    display: grid;
-    grid-template-columns: 250px 350px 30px 30px;
+    display: flex;
 
     margin-bottom: 20px;
 }
@@ -36,4 +35,30 @@ input[type="text"] {
     height: 2em;
     width: 250px;
     padding-left: 20px;
+}
+
+.add-question-button {
+    position: relative;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.add-question-option-button {
+    position: relative;
+    left: calc(50% - 25px);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 0px;
+}
+
+.add-question-option-button > span {
+    font-size: 35px;
+    display: flex;
+    margin: 0;
+    padding: 0;
 }

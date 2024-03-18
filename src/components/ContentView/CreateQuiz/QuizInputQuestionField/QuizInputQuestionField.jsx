@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
+import "./QuizInputQuestionField.css"
 
 const QuizInputQuestionField = ({ labelTitle, quizData, questionIndex, fieldIdentifier, changeFunction}) => {
 
     return (
-        <div className="quiz-label-container">
+        <div className="quiz-label-container quiz-question-container">
             <label htmlFor={fieldIdentifier}>{labelTitle}:</label>
             <input 
                 type="text"

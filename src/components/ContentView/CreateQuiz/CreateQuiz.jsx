@@ -156,14 +156,16 @@ const CreateQuiz = () => {
                             changeFunction={handleQuestionChange}
                             />
                     )}
-                    <button onClick={() => addQuestionOption(key)}>
-                        +
-                    </button>
+                    <button 
+                        className="add-question-option-button"
+                        onClick={() => addQuestionOption(key)}
+                    ><span>+</span></button>
                 </div>
             )}
-            <button onClick={() => addQuestion()}>
-                Add another question!
-            </button>
+            <button 
+                className="add-question-button"
+                onClick={() => addQuestion()}
+            > Add another question! </button>
         </div>
     )
 }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const QuizInputMetaField = ({ labelTitle, quizData, questionIndex, fieldIdentifier, changeFunction}) => {
 
     return (
-        <div className="quiz-label-container">
+        <div className="quiz-label-container quiz-meta-container">
             <label htmlFor={fieldIdentifier}>{labelTitle}:</label>
             <input 
                 type="text"
