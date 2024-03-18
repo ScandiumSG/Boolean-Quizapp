@@ -50,4 +50,4 @@ If other Vite projects are currently running, it will increment the port to run 
 
 To ensure uniform standard in branches, commits, and pull requests we have several guidelines on how to contribute to the project. These guidelines are contained within [documentation/how_to_contribute](./documentation/how_to_contribute.md).
 
-[Back to top](#bobs-brainbox)
+[Back to top](#bobs-brainbox)!

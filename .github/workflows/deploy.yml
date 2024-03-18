@@ -3,8 +3,13 @@ on:
   push:
     branches:
       - main
-jobs:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
 
+
+jobs:
   deploy:
     name: Request Host Webhook
     runs-on: ubuntu-latest
