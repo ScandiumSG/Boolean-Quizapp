@@ -81,6 +81,8 @@ If the commit convention needs to be ignored, the commit should be as short and 
 
 As each issue should be its own branch, it is necessary to merge these branches back into main as soon as possible. Utilize the github interface to create a new pull request and write a short description of the changes contained within your branch. Either request a review from another contributor or request feedback in person.
 
+It is recommended to generate a draft pull request as soon as possible, i.e. after a few commits have been pushed. When the issue is done (or nearing) completion convert the pull request from a draft to a proper pull request.
+
 All github actions must pass before merging into the `main` branch!
 
 The pull request should also be linked to the issue, this ensures that the issue is closed when the pull request is merged into `main`. To link a pull request to a issue write the command `"Closes #n"` into the pull request description. Where n is the issue number. The issue should now be visible within the Development tab on the left side of the pull request.
