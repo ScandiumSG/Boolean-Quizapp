@@ -10,7 +10,7 @@ To work on an issue the issue must be assigned to the person, then moved from th
 
 ## Creating branches
 
-The preferred method of creating branches is using the github automatic creation from the issue worked on. Detailed information and process on this is found in [documentation/issue_branches.md](./documentation/issue_branches.md).
+The preferred method of creating branches is using the github automatic creation from the issue worked on. Detailed information and process on this is found in [issue_branches.md](./issue_branches.md).
 
 ## Commiting changes
 
