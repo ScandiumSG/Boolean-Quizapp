@@ -6,7 +6,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
+  font-size: 20px;
   
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -33,6 +33,11 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+input[type="text"] {
+  color: var(--primary-text-color);
+  font-size: 18px;
 }
 
 h1 {
@@ -73,7 +78,11 @@ button:focus-visible {
 }
 
 .spaced-background {
-  z-index: -5;
   background: rgb(0,0,0);
   background: linear-gradient(32deg, rgba(0,0,0,0.9177871832326681) 0%, rgba(13,0,18,1) 19%, rgba(56,0,39,1) 22%, rgba(2,3,40,1) 25%, rgba(33,13,59,1) 44%, rgba(36,0,46,1) 45%, rgba(16,16,44,1) 53%, rgba(17,26,64,1) 83%, rgba(51,44,20,1) 85%, rgba(23,14,38,1) 87%, rgba(0,20,42,1) 100%);
+}
+
+.scroll-container {
+  overflow: scroll;
+  scrollbar-width: thin;
 }

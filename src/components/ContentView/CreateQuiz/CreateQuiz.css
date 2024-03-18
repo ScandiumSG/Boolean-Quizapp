@@ -1,0 +1,64 @@
+.create-quiz-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    position: absolute;
+    top: 0px;
+    padding: 40px;
+    width: calc(100% - 80px - 40px);
+}
+
+
+.quiz-label-container {
+    display: flex;
+
+    margin-bottom: 20px;
+}
+
+.question-container {
+    border: solid 1px darkgray;
+    border-radius: 20px;
+    background: var(--box-background-color);
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+label {
+    color: var(--primary-text-color)
+}
+
+input[type="text"] {
+    color: white;
+    border-radius: 20px;
+    height: 2em;
+    width: 250px;
+    padding-left: 20px;
+}
+
+.add-question-button {
+    position: relative;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.add-question-option-button {
+    position: relative;
+    left: calc(50% - 25px);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 0px;
+}
+
+.add-question-option-button > span {
+    font-size: 35px;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}

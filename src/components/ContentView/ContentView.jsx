@@ -6,7 +6,7 @@ import CreateQuiz from "./CreateQuiz/CreateQuiz"
 
 const ContentView = () => {
     return (
-        <div className="background spaced-background">
+        <div className="background spaced-background scroll-container">
             <div className="content-view-container">
                 <Routes>
                     <Route
