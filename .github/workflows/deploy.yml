@@ -1,0 +1,13 @@
+name: Trigger Netify Build Hook
+on:
+  push:
+    branches:
+      - main
+jobs:
+
+  deploy:
+    name: Request Host Webhook
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl request
+        run: curl -X POST -d {} ${{secrets.NETIFY_GIT_MAIN_HOOK}}
