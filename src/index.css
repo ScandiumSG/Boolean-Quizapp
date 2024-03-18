@@ -13,9 +13,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --header-background-color: #6cb3f2;
+  --header-background-color: #1b1ead;
   --primary-text-color: #cfff98;
   --box-background-color: lightgray;
+
+}
+
+body, html, :root, * {
+  box-sizing: border-box;
 }
 
 a {
