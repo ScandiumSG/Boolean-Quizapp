@@ -89,8 +89,30 @@ const CreateQuiz = () => {
         setQuizData({...quizData, questions: modifiedQuestions})
     }
 
+    const addQuestionOption = (questionIndex) => {
+        const newFieldValue = ["", false];
+        const data = quizData
+        const newOptionIndex = Object.keys(data.questions[questionIndex][`${questionIndex}_options`]).length + 1
+        data.questions[questionIndex][`${questionIndex}_options`][`option_${newOptionIndex}`] = newFieldValue
+        setQuizData({...data})
+    }
+
+    const addQuestion = () => {
+        const newQuestionIndex = quizData.questions.length
+        const newQuestionData = {
+            [`${newQuestionIndex}_question`]: "",
+            [`${newQuestionIndex}_options`] : {
+                "option_1": ["", false],
+                "option_2": ["", false]
+            }
+        }
+        const data = quizData
+        data.questions.push(newQuestionData)
+        setQuizData({...data})
+    }
+
     useEffect(() => {
-        //console.log(quizData)
+        console.log(quizData)
     }, [quizData])
 
     if (!quizData) {
@@ -134,8 +156,14 @@ const CreateQuiz = () => {
                             changeFunction={handleQuestionChange}
                             />
                     )}
+                    <button onClick={() => addQuestionOption(key)}>
+                        +
+                    </button>
                 </div>
             )}
+            <button onClick={() => addQuestion()}>
+                Add another question!
+            </button>
         </div>
     )
 }

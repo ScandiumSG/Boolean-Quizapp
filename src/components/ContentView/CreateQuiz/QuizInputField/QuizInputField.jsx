@@ -33,19 +33,35 @@ const QuizInputField = ({ labelTitle, quizData, parentIdentifier, fieldIdentifie
             <input 
                 checked={quizData["questions"][parentIdentifier][`${parentIdentifier}_options`][fieldIdentifier][1] === false}
                 type="radio"
+                className="radio_button_item"
                 id={parentIdentifier+"_"+fieldIdentifier + "_radio_false"}
                 name={parentIdentifier+"_"+fieldIdentifier + "_radio"}
                 value={false}
                 onChange={(e) => handleRadioChange(e)}
             />
+            <label 
+                className="radio_button_label" 
+                htmlFor={parentIdentifier+"_"+fieldIdentifier + "_radio_false"}
+                style={{color: "red"}}
+            >
+                ✕
+            </label>
             <input 
                 checked={quizData["questions"][parentIdentifier][`${parentIdentifier}_options`][fieldIdentifier][1] === true}
                 type="radio"
+                className="radio_button_item"
                 id={parentIdentifier+"_"+fieldIdentifier + "_radio_true"}
                 name={parentIdentifier+"_"+fieldIdentifier + "_radio"}
                 value={true}
                 onChange={(e) => handleRadioChange(e)}
-            /><br/>
+            />
+            <label 
+                className="radio_button_label" 
+                htmlFor={parentIdentifier+"_"+fieldIdentifier + "_radio_true"}
+                style={{color: "green"}}
+            >
+                ✓
+            </label>
         </div>
     )
 }

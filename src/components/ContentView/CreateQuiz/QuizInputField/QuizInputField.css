@@ -1,7 +1,41 @@
 .quiz-label-container.question-options {
     display: grid;
-    grid-template-columns: 200px 350px 30px 30px;
-    margin-left: 70px;
+    grid-template-columns: 125px 450px 30px 30px;
+    column-gap: 20px;
+    margin-left: 50px;
 
+    align-items: center;
+
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 5px;
+    padding-left: 30px;
     margin-bottom: 10px;
+}
+
+.quiz-label-container.question-options > input[type="text"] {
+    width: 90%;
+}
+
+.radio_button_item{
+    display: none !important;
+
+}
+
+.radio_button_label {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    border: 1px solid black;
+    border-radius: 50%;
+    
+    height:min-content;
+    width: auto;
+
+    opacity: 0.05;
+}
+
+.radio_button_item:checked + label {
+    opacity: 1;
 }
