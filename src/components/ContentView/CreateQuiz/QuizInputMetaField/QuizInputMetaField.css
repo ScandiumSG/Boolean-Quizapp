@@ -3,5 +3,5 @@
 }
 
 .quiz-label-container.quiz-meta-container > input {
-    width: calc(80vw - 400px);
+    width: 70%;
 }

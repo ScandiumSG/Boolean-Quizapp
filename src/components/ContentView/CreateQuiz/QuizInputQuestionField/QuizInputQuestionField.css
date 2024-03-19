@@ -3,5 +3,5 @@
 }
 
 .quiz-label-container.quiz-question-container > input {
-    width: calc(80vw - 370px);
+    width: 70%;
 }

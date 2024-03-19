@@ -12,32 +12,25 @@
 
 .quiz-label-container {
     display: flex;
-
-    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: 10px;
 }
 
 .question-container {
-    border: solid 1px darkgray;
-    border-radius: 20px;
-    background: var(--box-background-color);
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 20px;
     margin-bottom: 20px;
 }
 
-label {
-    color: var(--primary-text-color)
-}
-
-input[type="text"] {
-    color: white;
-    border-radius: 20px;
-    height: 2em;
-    width: 250px;
-    padding-left: 20px;
-}
-
 .add-question-button {
+    margin: auto;
     position: relative;
     left: 20px;
     display: flex;
@@ -54,11 +47,10 @@ input[type="text"] {
     height: 50px;
     border-radius: 50%;
     padding: 0px;
+    margin-top: 0.5rem;
 }
 
 .add-question-option-button > span {
-    font-size: 35px;
-    display: flex;
-    margin: 0;
-    padding: 0;
+    font-size: 2rem;
+    line-height: 2rem;
 }
