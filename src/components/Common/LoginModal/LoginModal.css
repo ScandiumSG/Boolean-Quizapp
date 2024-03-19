@@ -1,0 +1,62 @@
+.login-modal-container {
+    z-index: 5;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+    border: 10px solid gray;
+    border-radius: 15px;
+
+    background: white;
+    width: 40vw;
+    min-width: 400px;
+    max-width: 500px;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    height: auto;
+}
+
+.login-modal-container > h3 {
+    color: black;
+    margin-bottom: 10px;
+}
+
+.login-fields-container {
+    display: flex;
+    flex-direction: column;
+
+    text-align: left;
+    margin-bottom: 20px;
+    width: 95%;
+}
+
+.login-fields-container > div > label[for^="login-modal"] {
+    text-align: left;
+}
+
+.login-fields-container > div > input {
+    width: 90%;
+}
+
+.login-modal-button-container {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+}
+
+.login-modal-button-container > button {
+    margin: 5px;
+    padding: 4px;
+    width: min-content;
+    text-align: center;
+    align-content: center;
+}
+
+.error-message-active {
+    display: block;
+    color: red;
+}
+
+.error-message-hidden {
+    display: none;
+}

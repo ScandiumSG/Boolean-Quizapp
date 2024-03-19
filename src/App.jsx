@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import ContentView from "./components/ContentView/ContentView";
-import { userContext } from "@/contexts/contexts";
+import { userContext, loginContext } from "@/contexts/contexts";
 
 const placeholderUser = {
   name: "Some Guy",
@@ -12,14 +12,19 @@ const placeholderUser = {
 
 function App() {
   const [currentUser, setCurrentUser] = useState(placeholderUser);
+  const [showLoginModal, setShowLoginModal] = useState(true);
 
   return (
     <>
       <userContext.Provider
         value={{ user: currentUser, setUser: setCurrentUser }}
       >
+      <loginContext.Provider
+        value={{ showLogin: showLoginModal, setShowLogin: setShowLoginModal}}
+      >
         <NavigationBar />
         <ContentView />
+      </loginContext.Provider>
       </userContext.Provider>
     </>
   );
