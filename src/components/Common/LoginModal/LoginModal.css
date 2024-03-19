@@ -60,3 +60,11 @@
 .error-message-hidden {
     display: none;
 }
+
+.register-button {
+    position: absolute;
+    left: 5%;
+    top: 85%;
+    color: black;
+    cursor: pointer;
+}

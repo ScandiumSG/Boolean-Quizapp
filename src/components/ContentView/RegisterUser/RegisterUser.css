@@ -1,0 +1,19 @@
+.register-user-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    width: 90%;
+}
+
+.register-user-fields {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 80%;
+}
+
+.register-user-fields > button {
+    margin-top: 40px;
+}
