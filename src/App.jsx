@@ -12,7 +12,7 @@ const placeholderUser = {
 
 function App() {
   const [currentUser, setCurrentUser] = useState(placeholderUser);
-  const [showLoginModal, setShowLoginModal] = useState(true);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
     <>
