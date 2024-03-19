@@ -13,10 +13,17 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --header-background-color: #1b1ead;
-  --primary-text-color: #cfff98;
-  --box-background-color: lightgray;
+  --header-height: 60px;
 
+  --bob-blue: #1b1ead;
+  --space-grey: #3f3f3f;
+  --space-purple: #441C72;
+  --space-pink: #C92389;
+  --light-form-color: #cccccc;
+  --dark-form-color: #333333;
+  --menu-border-color: #9494941a;
+  --primary-text-color: #e8b5ff;
+  --box-background-color: lightgray;
 }
 
 document, body, html, *, #root {
@@ -26,8 +33,8 @@ document, body, html, *, #root {
 }
 
 #root {
-  width: 100vh;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 a {
@@ -42,13 +49,22 @@ a:hover {
 body {
   display: flex;
   place-items: center;
+  height: 100vh;
+  width: 100vw;
   min-width: 320px;
   min-height: 100vh;
 }
 
-input[type="text"] {
-  color: var(--primary-text-color);
+label {
+  color: var(--primary-text-color)
+}
+
+input[type="text"], input[type="email"] {
+  padding: 0 0.5rem;
   font-size: 18px;
+  border-radius: 20px;
+  height: 2em;
+  width: 250px;
 }
 
 h1 {
