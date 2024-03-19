@@ -1,5 +1,14 @@
 .profile-view-container {
-    position: fixed;
-    left: 200px;
-    top: 200px;
+    width: 500px;
+    margin: auto;
+    border: 1px solid white;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-view-container > input {
+    width: 60%;
+    text-align: center;
 }
