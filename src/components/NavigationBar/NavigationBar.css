@@ -4,22 +4,22 @@
     top: 0px;
     left: 0vw;
     width: 100vw;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px;
-    background-color: var(--header-background-color);
+    height: var(--header-height);
+    background-color: var(--bob-blue);
+    border-bottom: 1px solid var(--menu-border-color);
 }
 
 .navigationbar-container > .logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     height: 60px;
     width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    margin: auto;
 }
 
 .navigationbar-container > .logo-container > .logo-text {
@@ -35,5 +35,41 @@
     margin-top: 1.5rem;
     height: 140%;
     border-radius: 50%;
-    border: 6px solid var(--header-background-color);
+    border: 6px solid var(--bob-blue);
+}
+
+.navigationbar-container > .account-icon-container {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+
+    .navigationbar-container > .logo-container {
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .navigationbar-container > .logo-container > .logo-img {
+        height: 120%;
+        margin-top: 0.4rem;
+        margin-right: 0.25rem;
+    }
+
+    .navigationbar-container > .logo-container > .logo-text {
+        font-size: 1.2rem;
+        width: auto;
+        margin-right: 0.5rem;
+    }
+
+    .navigationbar-container > .logo-container > .logo-text:first-child {
+        display: none;
+    }
+
+    .navigationbar-container > .logo-container > .logo-text:last-child::before {
+        content: "Bob's ";
+    }
 }

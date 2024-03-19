@@ -6,15 +6,24 @@ const ProfileView = () => {
   const { user } = useContext(userContext);
 
   return (
-    <div className="profile-view-container content-frame">
-      <h2 className="page-header">Your Account</h2>
-      <label htmlFor="username">Username</label>
-      <input id="username" type="text" value={user.username} disabled={true} />
-      <label htmlFor="name">Name</label>
-      <input id="name" type="text" value={user.name} disabled={true} />
-      <label htmlFor="email">Email</label>
-      <input id="name" type="email" value={user.email} disabled={true} />
-    </div>
+    <>
+      <h2 className="menu-header">Account Info</h2>
+      <div className="menu-panel">
+        <div className="profile-view-container">
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            value={user.username}
+            disabled={true}
+          />
+          <label htmlFor="name">Name</label>
+          <input id="name" type="text" value={user.name} disabled={true} />
+          <label htmlFor="email">Email</label>
+          <input id="name" type="email" value={user.email} disabled={true} />
+        </div>
+      </div>
+    </>
   );
 };
 
