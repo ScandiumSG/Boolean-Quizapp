@@ -7,6 +7,7 @@ import QuizList from "./QuizList/QuizList";
 import LoginModal from "../Common/LoginModal/LoginModal";
 import { useContext } from 'react'
 import { loginContext } from "@/contexts/contexts"
+import RegisterUser from "./RegisterUser/RegisterUser";
 
 const ContentView = () => {
 
@@ -19,6 +20,7 @@ const ContentView = () => {
           <Route path="" element={<Navigate replace to="quiz" />} />
           <Route path="quiz" element={<QuizList />} />
           <Route path="profile" element={<ProfileView />} />
+          <Route path="register" element={<RegisterUser />}/>
           <Route path="quiz/:id" element={<QuizView />} />
           <Route path="quiz/new" element={<CreateQuiz />} />
         </Routes>

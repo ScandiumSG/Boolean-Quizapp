@@ -1,6 +1,7 @@
 import "./LoginModal.css"
 import { useState, useContext } from 'react'
 import { loginContext, userContext } from "@/contexts/contexts"
+import { useNavigate } from "react-router-dom"
 
 const LoginModal = () => {
     const [loginCredentials, setLoginCredentials] = useState({
@@ -9,6 +10,7 @@ const LoginModal = () => {
     })
     const [showError, setShowError] = useState(false)
 
+    const navigate = useNavigate()
     const { showLogin, setShowLogin } = useContext(loginContext)
     const { setUser } = useContext(userContext)
 
@@ -34,7 +36,6 @@ const LoginModal = () => {
         }
     }
 
-    console.log(showLogin)
     return (
         <dialog open={showLogin} className="login-modal-container">
             <h3>Login</h3><br/>
@@ -65,13 +66,14 @@ const LoginModal = () => {
                 </div>
             </div>
             <span className={showError ? "error-message-active": "error-message-hidden"}>Invalid login credentials</span>
+            <span className="register-button" onClick={() => {navigate("/register"); setShowLogin(false)}}>Register new user</span>
             <div className="login-modal-button-container">
-                    <button onClick={() => submitLogin()}>
-                        <span>Login</span>
-                    </button>
-                    <button onClick={() => setShowLogin(false)}>
-                        <span>Cancel</span>
-                    </button>
+                <button onClick={() => submitLogin()}>
+                    <span>Login</span>
+                </button>
+                <button onClick={() => setShowLogin(false)}>
+                    <span>Cancel</span>
+                </button>
             </div>
         </dialog>
     )
