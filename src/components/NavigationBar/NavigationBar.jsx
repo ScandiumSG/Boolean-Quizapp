@@ -10,7 +10,6 @@ const NavigationBar = () => {
 
   return (
     <div className="navigationbar-container">
-      <div></div>
       <Link to="/" className="logo-container">
         <h1 className="logo-text">Bob&apos;s</h1>
         <img src={logoUrl} className="logo-img" />
