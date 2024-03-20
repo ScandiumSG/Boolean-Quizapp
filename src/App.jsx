@@ -4,14 +4,9 @@ import NavigationBar from "./components/NavigationBar/NavigationBar";
 import ContentView from "./components/ContentView/ContentView";
 import { userContext, loginContext } from "@/contexts/contexts";
 
-const placeholderUser = {
-  name: "Some Guy",
-  email: "example@email.com",
-  username: "iamverysmart",
-};
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(placeholderUser);
+  const [currentUser, setCurrentUser] = useState();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
