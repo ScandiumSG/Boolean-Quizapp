@@ -1,0 +1,1 @@
+export const baseQuizUrl = "https://bobbb.azurewebsites.net/play/quiz/"
