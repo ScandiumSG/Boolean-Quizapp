@@ -15,7 +15,6 @@ function QuizList() {
     await fetch("https://bobbb.azurewebsites.net/play/quiz/", request)
       .then((res) => res.json())
       .then((res) => res.data)
-      .then((res) => console.log(res))
       .then((res) => setQuizList([...res]))
   }
 
