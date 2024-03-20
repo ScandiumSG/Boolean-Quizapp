@@ -3,10 +3,11 @@ import "./App.css";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import ContentView from "./components/ContentView/ContentView";
 import { userContext, loginContext } from "@/contexts/contexts";
+import { readSessionStorage } from "./utils/userUtils";
 
 
 function App() {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(readSessionStorage());
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (

@@ -3,6 +3,7 @@ import { useState, useContext } from 'react'
 import { loginContext, userContext } from "@/contexts/contexts"
 import { useNavigate } from "react-router-dom"
 import { userHandlingUrl } from "@/utils/apiUtil"
+import { addToSessionStorage } from "@/utils/userUtils"
 
 const LoginModal = () => {
     const [loginCredentials, setLoginCredentials] = useState({
@@ -38,7 +39,10 @@ const LoginModal = () => {
                     throw new Error("Invalid login credentials")
                 }
             })
-            .then((res) => setUser({...res}))
+            .then((res) => {
+                setUser({...res})
+                addToSessionStorage(res)
+            })
             .then(() => setShowLogin(false))
             .catch(() => setShowError(true))
     }
