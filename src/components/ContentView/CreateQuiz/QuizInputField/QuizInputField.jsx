@@ -11,9 +11,9 @@ const QuizInputField = ({
 }) => {
   const [fieldIsCorrect, setFieldIsCorrect] = useState(false);
   const [fieldValue, setFieldValue] = useState(
-    quizData["questions"][parentIdentifier][`${parentIdentifier}_options`][
+    quizData["questions"][parentIdentifier]["answerOptions"][
       fieldIdentifier
-    ][0]
+    ]["text"]
   );
 
   const handleTextChange = (e) => {
@@ -38,23 +38,17 @@ const QuizInputField = ({
 
   return (
     <div className="quiz-label-container question-options">
-      <label htmlFor={fieldIdentifier}>{labelTitle}:</label>
+      <label htmlFor={fieldIdentifier}>{parseInt(labelTitle) + 1}:</label>
       <input
         type="text"
         id={fieldIdentifier}
-        value={
-          quizData["questions"][parentIdentifier][
-            `${parentIdentifier}_options`
-          ][fieldIdentifier][0]
-        }
+        value={quizData["questions"][parentIdentifier]["answerOptions"][fieldIdentifier]["text"]}
         onChange={(e) => handleTextChange(e)}
       />
       <div className="question-options-group">
         <input
           checked={
-            quizData["questions"][parentIdentifier][
-              `${parentIdentifier}_options`
-            ][fieldIdentifier][1] === false
+            quizData["questions"][parentIdentifier]["answerOptions"][fieldIdentifier]["isCorrect"] === false
           }
           type="radio"
           className="radio_button_item"
@@ -72,9 +66,7 @@ const QuizInputField = ({
         </label>
         <input
           checked={
-            quizData["questions"][parentIdentifier][
-              `${parentIdentifier}_options`
-            ][fieldIdentifier][1] === true
+            quizData["questions"][parentIdentifier]["answerOptions"][fieldIdentifier]["isCorrect"] === true
           }
           type="radio"
           className="radio_button_item"

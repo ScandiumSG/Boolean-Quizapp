@@ -2,6 +2,7 @@ import "./LoginModal.css"
 import { useState, useContext } from 'react'
 import { loginContext, userContext } from "@/contexts/contexts"
 import { useNavigate } from "react-router-dom"
+import { userHandlingUrl } from "@/utils/apiUtil"
 
 const LoginModal = () => {
     const [loginCredentials, setLoginCredentials] = useState({
@@ -22,18 +23,24 @@ const LoginModal = () => {
     const submitLogin = async () => {
         const request = {
             method: "POST",
-            header: {
-                "Content-type": "application/json"
+            headers: {
+                "accept": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(loginCredentials)
         }
-        let res = await fetch("backend-url", request)
-        if (res.status !== 200) {
-            setShowError(true)
-        } else {
-            res = res.json()
-            setUser({...res})
-        }
+        
+        await fetch(userHandlingUrl, request)
+            .then((res) => {
+                if (res.ok) {
+                    return res.json()
+                } else {
+                    throw new Error("Invalid login credentials")
+                }
+            })
+            .then((res) => setUser({...res}))
+            .then(() => setShowLogin(false))
+            .catch(() => setShowError(true))
     }
 
     return (
