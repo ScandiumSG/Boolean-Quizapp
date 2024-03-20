@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import "./CreateQuiz.css";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import QuizInputField from "./QuizInputField/QuizInputField";
 import QuizInputMetaField from "./QuizInputMetaField/QuizInputMetaField";
 import QuizInputQuestionField from "./QuizInputQuestionField/QuizInputQuestionField";
@@ -62,6 +62,7 @@ const CreateQuiz = () => {
   const [quizData, setQuizData] = useState(
     generateEmptyTemplate(primaryFields)
   );
+  const [errorMessage, setErrorMessage] = useState("")
   const { user } = useContext(userContext)
   const navigate = useNavigate()
 
@@ -138,9 +139,11 @@ const CreateQuiz = () => {
 
   const submitQuiz = async () => {
     let data = quizData
-    data = {...data, "userId": user.Id}
+    data = {...data, "userId": user.id}
     
-    if (!validateData(data)) {
+    const validation = validateData(data)
+    if (validation !== "") {
+      setErrorMessage(validation)
       return;
     }
 
@@ -154,16 +157,11 @@ const CreateQuiz = () => {
       body: JSON.stringify(data)
     }
 
-    console.log(data)
     await fetch(manageQuizUrl, request)
       .then((res) => res.json())
       .then((res) => console.log(res))
     navigate("/quiz")
   }
-
-  useEffect(() => {
-    console.log(quizData);
-  }, [quizData]);
 
   if (!quizData) {
     return <div>Loading...</div>;
@@ -235,6 +233,7 @@ const CreateQuiz = () => {
         {" "}
         Add another question!{" "}
       </button>
+      {errorMessage !== "" && <p style={{color: "red"}}>{errorMessage}</p>}
       <button className="submit-quiz-button" onClick={() => submitQuiz()}>
         {" "}
         Submit the quiz!{" "}
