@@ -1,3 +1,4 @@
+import { baseQuizUrl } from "@/utils/apiUtil";
 import "./QuizList.css";
 import QuizListItem from "./QuizListItem";
 import { useEffect, useState } from "react"
@@ -12,7 +13,7 @@ function QuizList() {
         "content-type": "application/json"
       }
     }
-    await fetch("https://bobbb.azurewebsites.net/play/quiz/", request)
+    await fetch(baseQuizUrl, request)
       .then((res) => res.json())
       .then((res) => res.data)
       .then((res) => setQuizList([...res]))
