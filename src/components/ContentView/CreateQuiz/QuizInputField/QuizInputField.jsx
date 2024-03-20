@@ -8,6 +8,7 @@ const QuizInputField = ({
   parentIdentifier,
   fieldIdentifier,
   changeFunction,
+  charLimit
 }) => {
   const [fieldIsCorrect, setFieldIsCorrect] = useState(false);
   const [fieldValue, setFieldValue] = useState(
@@ -15,8 +16,14 @@ const QuizInputField = ({
       fieldIdentifier
     ]["text"]
   );
+  const [disableInput, setDisableInput] = useState(false)
 
   const handleTextChange = (e) => {
+    if (e.target.value.length >= charLimit) {
+      setDisableInput(true)
+      return
+    } 
+    setDisableInput(false)
     setFieldValue(e.target.value);
     changeFunction(
       parentIdentifier,
@@ -38,7 +45,12 @@ const QuizInputField = ({
 
   return (
     <div className="quiz-label-container question-options">
-      <label htmlFor={fieldIdentifier}>{parseInt(labelTitle) + 1}:</label>
+      <label htmlFor={fieldIdentifier}>
+        {parseInt(labelTitle) + 1}:  {disableInput && 
+          <span style={{color: "red"}}>
+            Max character limit reached.
+          </span>}
+      </label>
       <input
         type="text"
         id={fieldIdentifier}
@@ -93,6 +105,7 @@ QuizInputField.propTypes = {
   fieldIdentifier: PropTypes.string,
   quizData: PropTypes.object,
   changeFunction: PropTypes.func,
+  charLimit: PropTypes.number,
 };
 
 export default QuizInputField;
