@@ -1,31 +1,61 @@
 /* eslint-disable no-unused-vars */
 import "./CreateQuiz.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import QuizInputField from "./QuizInputField/QuizInputField";
 import QuizInputMetaField from "./QuizInputMetaField/QuizInputMetaField";
 import QuizInputQuestionField from "./QuizInputQuestionField/QuizInputQuestionField";
+import { useNavigate } from "react-router-dom";
+import { userContext } from "@/contexts/contexts";
+import { validateData } from "@/utils/postUtils";
+import { manageQuizUrl } from "@/utils/apiUtil";
 
 const primaryFields = {
   title: "Quiz title",
   description: "Quiz description",
   questions: [
     {
-      "0_question": "Biggest desert?",
-      "0_options": {
-        option_1: ["Sahara", false],
-        option_2: ["Gobi", false],
-        option_3: ["Antartica", true],
-        option_4: ["Nevada", false],
-      },
+      "text": "Biggest desert?",
+      "order": 0,
+      "answerOptions": [
+        {
+          "text": "Sahara", 
+          "isCorrect": false,
+        },
+        {
+          "text": "Gobi", 
+          "isCorrect": false,
+        },
+        {
+          "text": "Antartica", 
+          "isCorrect": true,
+        },
+        {
+          "text": "Nevada", 
+          "isCorrect": false,
+        }
+      ]
     },
     {
-      "1_question": "Biggest desert?",
-      "1_options": {
-        option_1: ["Sahara", false],
-        option_2: ["Gobi", false],
-        option_3: ["Antartica", true],
-        option_4: ["Nevada", false],
-      },
+      "text": "Biggest desert?",
+      "order": 1,
+      "answerOptions": [
+        {
+          "text": "Sahara",
+          "isCorrect": false,
+        },
+        {
+          "text": "Gobi",
+          "isCorrect": false,
+        },
+        {
+          "text": "Antartica",
+          "isCorrect": true,
+        },
+        {
+          "text": "Nevada",
+          "isCorrect": false,
+        }
+      ]
     },
   ],
 };
@@ -35,18 +65,21 @@ const generateEmptyTemplate = (obj) => {
 
   for (const [key, value] of Object.entries(obj)) {
     if (Array.isArray(value)) {
-      res[key] = value.map((question) => generateEmptyTemplate(question));
+      res[key] = value.map((question) => {
+        const emptyQuestion = {};
+        for (const [questionKey, questionValue] of Object.entries(question)) {
+          if (questionKey === "text") {
+            emptyQuestion[questionKey] = ""
+          } else if (questionKey === "answerOptions") {
+            emptyQuestion[questionKey] = questionValue.map(option => ({ text: "", isCorrect: false }));
+          } else {
+            emptyQuestion[questionKey] = questionValue;
+          }
+        }
+        return emptyQuestion;
+      });
     } else if (typeof value === "object" && value !== null) {
-      if (Object.keys(value).some((k) => k.startsWith("option_"))) {
-        res[key] = Object.fromEntries(
-          Object.entries(value).map(([optionKey, optionValue]) => [
-            optionKey,
-            ["", optionValue[1]],
-          ])
-        );
-      } else {
-        res[key] = generateEmptyTemplate(value);
-      }
+      res[key] = generateEmptyTemplate(value);
     } else {
       res[key] = Array.isArray(value) ? value.map(() => "") : "";
     }
@@ -59,6 +92,8 @@ const CreateQuiz = () => {
   const [quizData, setQuizData] = useState(
     generateEmptyTemplate(primaryFields)
   );
+  const { user } = useContext(userContext)
+  const navigate = useNavigate()
 
   const handleMetaChange = (e) => {
     setQuizData({ ...quizData, [e.target.id]: e.target.value });
@@ -70,13 +105,13 @@ const CreateQuiz = () => {
       if (index === questionIndex) {
         return {
           ...question,
-          [`${questionIndex}_question`]: event.target.value,
+          ["text"]: event.target.value,
         };
       } else {
         return question;
       }
     });
-    setQuizData({ ...quizData, questions: modifiedQuestions });
+    setQuizData({ ...quizData, questions: [...modifiedQuestions]});
   };
 
   const handleQuestionChange = (
@@ -88,13 +123,11 @@ const CreateQuiz = () => {
     const modifiedQuestions = quizData.questions.map((question, index) => {
       // If true, we need to make changes then return
       if (index === questionIndex) {
-        const newValue = [fieldValue, truthy];
+        const newValue = {"text": fieldValue, "isCorrect": truthy};
+        const answerOptions = [...(question.answerOptions)];
+        answerOptions[fieldIdentifier] = newValue
         return {
-          ...question,
-          [`${questionIndex}_options`]: {
-            ...(question[`${questionIndex}_options`] || {}),
-            [fieldIdentifier]: newValue,
-          },
+          ...question, ["answerOptions"]: answerOptions
         };
       } else {
         return question;
@@ -105,30 +138,51 @@ const CreateQuiz = () => {
   };
 
   const addQuestionOption = (questionIndex) => {
-    const newFieldValue = ["", false];
+    const newFieldValue = {"text": "", "isCorrect": false};
     const data = quizData;
-    const newOptionIndex =
-      Object.keys(data.questions[questionIndex][`${questionIndex}_options`])
-        .length + 1;
-    data.questions[questionIndex][`${questionIndex}_options`][
-      `option_${newOptionIndex}`
-    ] = newFieldValue;
+    data.questions[questionIndex]["answerOptions"].push(newFieldValue)
     setQuizData({ ...data });
   };
 
   const addQuestion = () => {
     const newQuestionIndex = quizData.questions.length;
     const newQuestionData = {
-      [`${newQuestionIndex}_question`]: "",
-      [`${newQuestionIndex}_options`]: {
-        option_1: ["", false],
-        option_2: ["", false],
-      },
+      ["text"]: "",
+      ["Order"]: newQuestionIndex,
+      ["answerOptions"]: [
+        {"text": "", "isCorrect": false},
+        {"text": "", "isCorrect": false},
+      ]
     };
     const data = quizData;
     data.questions.push(newQuestionData);
     setQuizData({ ...data });
   };
+
+  const submitQuiz = async () => {
+    let data = quizData
+    data = {...data, "userId": user.Id}
+    
+    if (!validateData(data)) {
+      return;
+    }
+
+    const request = {
+      method: "POST",
+      headers: {
+        "accept": "*/*",
+        "Authorization": `Bearer ${user.token}`,
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }
+
+    console.log(data)
+    await fetch(manageQuizUrl, request)
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+    navigate("/quiz")
+  }
 
   useEffect(() => {
     console.log(quizData);
@@ -157,7 +211,7 @@ const CreateQuiz = () => {
         />
       </div>
       {Object.entries(quizData.questions).map(([key, option]) => (
-        <>
+        <div key={key}>
           <h2 className="menu-header">{"Question " + (parseInt(key) + 1)}</h2>
           <div
             key={key}
@@ -168,21 +222,23 @@ const CreateQuiz = () => {
               key={key}
               questionIndex={parseInt(key)}
               labelTitle="Question text"
-              fieldIdentifier={`${key}_question`}
+              fieldIdentifier={"text"}
               quizData={quizData}
               changeFunction={handleQuestionTextChange}
             />
-            {Object.entries(option[parseInt(key) + "_options"]).map(
+
+            {Object.entries(option["answerOptions"]).map(
               ([optionKey, _]) => (
-                <QuizInputField
+                  <QuizInputField
                   key={optionKey}
+                  fieldIndex={optionKey}
                   labelTitle={optionKey.replace("_", " ")}
                   parentIdentifier={parseInt(key)}
                   fieldIdentifier={optionKey}
                   quizData={quizData}
                   changeFunction={handleQuestionChange}
                 />
-              )
+                )
             )}
             <button
               className="add-question-option-button"
@@ -191,11 +247,16 @@ const CreateQuiz = () => {
               <span>+</span>
             </button>
           </div>
-        </>
-      ))}
+        </div>
+        ))
+      }
       <button className="add-question-button" onClick={() => addQuestion()}>
         {" "}
         Add another question!{" "}
+      </button>
+      <button className="submit-quiz-button" onClick={() => submitQuiz()}>
+        {" "}
+        Submit the quiz!{" "}
       </button>
     </>
   );

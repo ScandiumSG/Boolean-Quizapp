@@ -54,3 +54,9 @@
     font-size: 2rem;
     line-height: 2rem;
 }
+
+.submit-quiz-button {
+    position: relative;
+    float: right;
+    margin-bottom: 40px;
+}

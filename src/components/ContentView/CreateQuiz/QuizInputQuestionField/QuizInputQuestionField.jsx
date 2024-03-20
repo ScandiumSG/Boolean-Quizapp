@@ -9,7 +9,7 @@ const QuizInputQuestionField = ({ labelTitle, quizData, questionIndex, fieldIden
             <input 
                 type="text"
                 id={fieldIdentifier}
-                value={quizData["questions"][fieldIdentifier]}
+                value={quizData["questions"][questionIndex][fieldIdentifier]}
                 onChange={(e) => changeFunction(e, questionIndex)}
             /><br/>
         </div>
