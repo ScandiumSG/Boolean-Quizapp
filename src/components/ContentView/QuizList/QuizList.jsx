@@ -39,7 +39,7 @@ function QuizList() {
               title={quizItem.title}
               description={quizItem.description}
               numQuestions={quizItem.length}
-              authorName={quizItem.userId}
+              authorName={quizItem.userName}
             />
           )}
         </div>
