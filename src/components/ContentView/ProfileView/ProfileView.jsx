@@ -17,8 +17,6 @@ const ProfileView = () => {
             value={user.username}
             disabled={true}
           />
-          <label htmlFor="name">Name</label>
-          <input id="name" type="text" value={user.name} disabled={true} />
           <label htmlFor="email">Email</label>
           <input id="name" type="email" value={user.email} disabled={true} />
         </div>
