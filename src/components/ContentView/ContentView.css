@@ -24,6 +24,10 @@
     font-size: 2.7rem;
     letter-spacing: 0.2rem;
   }
+
+.page-loading {
+  margin: 10rem;
+}
   
   .menu-header {
     z-index: 4;
@@ -56,6 +60,15 @@
     min-height: 200px;
     overflow: hidden;
     margin-bottom: 1rem;
+  }
+
+  .menu-panel.standalone {
+    margin-top: 2.3rem;
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+
+  .menu-panel.nebula-background {
+    background-attachment: fixed;
   }
   
   @media (max-width: 768px) {

@@ -109,6 +109,19 @@ button:focus-visible {
   background: linear-gradient(32deg, rgba(0,0,0,0.9177871832326681) 0%, rgba(13,0,18,1) 19%, rgba(56,0,39,1) 22%, rgba(2,3,40,1) 25%, rgba(33,13,59,1) 44%, rgba(36,0,46,1) 45%, rgba(16,16,44,1) 53%, rgba(17,26,64,1) 83%, rgba(51,44,20,1) 85%, rgba(23,14,38,1) 87%, rgba(0,20,42,1) 100%);
 }
 
+.nebula-background {
+  background-image:
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px),
+    radial-gradient(circle, var(--space-purple) 12%, var(--space-pink) 75%);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 150px 200px, 130px 150px, 300px 300px;
+    background-attachment: local;
+    transition: transform 0.2s ease;
+}
+
 .scroll-container {
   overflow: scroll;
   scrollbar-width: thin;
