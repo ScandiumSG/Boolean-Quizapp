@@ -17,6 +17,7 @@
 
   --bob-blue: #1b1ead;
   --space-grey: #3f3f3f;
+  --space-grey-highlight: #666666;
   --space-purple: #441C72;
   --space-pink: #C92389;
   --light-form-color: #cccccc;
@@ -82,6 +83,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  user-select: none;
 }
 button:hover {
   border-color: #646cff;

@@ -5,12 +5,12 @@ function QuizViewCover({ quizData, numQuestions, onStartQuiz }) {
     <div className="menu-panel standalone nebula-background quiz-view-cover">
       <h3 id="quiz-title">{quizData.title}</h3>
       <p id="quiz-description">{quizData.description}</p>
-      <button id="start-quiz-btn" onClick={onStartQuiz}>
+      <button className="quiz-btn" onClick={onStartQuiz}>
         Start Quiz
       </button>
       <div className="quiz-view-cover-footer">
-        <p id="quiz-num-questions">{"Number of questions: " + numQuestions}</p>
-        <p id="quiz-autjhor">{"Created by: " + quizData.userId}</p>
+        <p id="quiz-num-questions">{numQuestions + " Questions"}</p>
+        <p id="quiz-autjhor">{"By " + quizData.userId}</p>
       </div>
     </div>
   );

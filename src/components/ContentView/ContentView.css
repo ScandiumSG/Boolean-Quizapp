@@ -90,4 +90,9 @@
     .menu-header {
       margin-top: 1.5rem;
     }
+
+    .menu-panel.standalone {
+      margin-top: 1rem;
+      padding-bottom: 3rem;
+    }
   }
