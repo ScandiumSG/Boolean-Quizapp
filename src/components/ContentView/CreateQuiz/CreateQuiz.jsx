@@ -25,36 +25,6 @@ const primaryFields = {
           "text": "Gobi", 
           "isCorrect": false,
         },
-        {
-          "text": "Antartica", 
-          "isCorrect": true,
-        },
-        {
-          "text": "Nevada", 
-          "isCorrect": false,
-        }
-      ]
-    },
-    {
-      "text": "Biggest desert?",
-      "order": 1,
-      "answerOptions": [
-        {
-          "text": "Sahara",
-          "isCorrect": false,
-        },
-        {
-          "text": "Gobi",
-          "isCorrect": false,
-        },
-        {
-          "text": "Antartica",
-          "isCorrect": true,
-        },
-        {
-          "text": "Nevada",
-          "isCorrect": false,
-        }
       ]
     },
   ],
@@ -94,6 +64,13 @@ const CreateQuiz = () => {
   );
   const { user } = useContext(userContext)
   const navigate = useNavigate()
+
+  const charLimit = {
+    title: 80,
+    description: 1000,
+    question: 150,
+    answer: 80,
+  }
 
   const handleMetaChange = (e) => {
     setQuizData({ ...quizData, [e.target.id]: e.target.value });
@@ -202,12 +179,14 @@ const CreateQuiz = () => {
           fieldIdentifier={"title"}
           quizData={quizData}
           changeFunction={handleMetaChange}
+          charLimit={charLimit.title}
         />
         <QuizInputMetaField
           labelTitle={"Quiz description"}
           fieldIdentifier={"description"}
           quizData={quizData}
           changeFunction={handleMetaChange}
+          charLimit={charLimit.description}
         />
       </div>
       {Object.entries(quizData.questions).map(([key, option]) => (
@@ -225,6 +204,7 @@ const CreateQuiz = () => {
               fieldIdentifier={"text"}
               quizData={quizData}
               changeFunction={handleQuestionTextChange}
+              charLimit={charLimit.question}
             />
 
             {Object.entries(option["answerOptions"]).map(
@@ -237,6 +217,7 @@ const CreateQuiz = () => {
                   fieldIdentifier={optionKey}
                   quizData={quizData}
                   changeFunction={handleQuestionChange}
+                  charLimit={charLimit.answer}
                 />
                 )
             )}
