@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 function QuizListItem({ title, description, numQuestions, authorName }) {
   return (
-    <div className="quiz-list-item">
+    <div className="quiz-list-item nebula-background">
       <h3 className="quiz-list-item-title">{title}</h3>
       <p className="quiz-list-item-description">{description}</p>
       <div className="quiz-list-item-footer">
