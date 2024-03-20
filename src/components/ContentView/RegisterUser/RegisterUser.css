@@ -17,3 +17,9 @@
 .register-user-fields > button {
     margin-top: 40px;
 }
+
+.register-user-fields > input[type="text"], 
+.register-user-fields > input[type="email"], 
+.register-user-fields > input[type="password"] {
+    padding-left: 15px;
+}
