@@ -1,23 +1,14 @@
 .quiz-list {
+    width: 100%;
     padding: 0.3rem 0 1rem 0;
     margin: 1rem;
     display: grid;
-    grid-template-columns: 48% 48%;
-    gap: 1.5rem;
+    grid-template-columns: 32% 32% 32%;
+    gap: 1.4rem;
     justify-content: center;
 }
 
 .quiz-list-item {
-    background-image:
-    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
-    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px),
-    radial-gradient(circle, var(--space-purple) 12%, var(--space-pink) 75%);
-    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
-    background-position: 0 0, 150px 200px, 130px 150px, 300px 300px;
-    background-attachment: local;
-    transition: transform 0.2s ease;
     border-radius: 1rem;
     padding: 0 1rem 0 1rem;
     overflow: hidden;
@@ -83,6 +74,10 @@
 
 
 @media (max-width: 1000px) {
+    #quiz-list-page-header {
+        display: none;
+    }
+    
     .quiz-list {
         grid-template-columns: 100%;
     }

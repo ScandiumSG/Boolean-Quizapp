@@ -33,7 +33,7 @@
     z-index: 4;
     position: sticky;
     top: calc(var(--header-height) - 4px);
-    margin-top: 1.6rem;
+    margin-top: 1.4rem;
     color: white;
     background-color: var(--space-grey);
     border: 1px solid var(--menu-border-color);
@@ -88,7 +88,7 @@
     }
   
     .menu-header {
-      margin-top: 1.5rem;
+      margin-top: 0.5rem;
     }
 
     .menu-panel.standalone {
