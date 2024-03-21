@@ -10,7 +10,7 @@ const NavigationBar = () => {
 
   return (
     <nav className="navigationbar-container">
-      <Link to="/" className="logo-container">
+      <Link to="/quiz" className="logo-container">
         <h1 className="logo-text">Bob&apos;s</h1>
         <img src={logoUrl} className="logo-img" />
         <h1 className="logo-text">BrainBox</h1>

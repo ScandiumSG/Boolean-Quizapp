@@ -1,11 +1,23 @@
+import { loginContext, userContext } from "@/contexts/contexts";
 import PropTypes from "prop-types";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 function QuizListItem({ quizItem }) {
+  const { user } = useContext(userContext)
+  const { setShowLogin } = useContext(loginContext)
   const navigate = useNavigate()
+
+  const handleNavigate = () => {
+    if (user) {
+      navigate(`/quiz/${quizItem.id}`)
+    } else {
+      setShowLogin(true)
+    }
+  }
   
   return (
-    <div className="quiz-list-item nebula-background"onClick={() => navigate(`/quiz/${quizItem.id}`)}>
+    <div className="quiz-list-item nebula-background"onClick={() => handleNavigate()}>
       <h3 className="quiz-list-item-title">{quizItem.title}</h3>
       <p className="quiz-list-item-description">{quizItem.description}</p>
       <div className="quiz-list-item-footer">

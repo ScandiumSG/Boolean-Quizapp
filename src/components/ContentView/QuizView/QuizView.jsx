@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import "./QuizView.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import QuizViewCover from "./QuizViewSlides/QuizViewCover";
 import QuizViewQuestion from "./QuizViewSlides/QuizViewQuestion/QuizViewQuestion";
 import QuizViewResults from "./QuizViewSlides/QuizViewResults";
@@ -10,6 +10,7 @@ import { baseQuizUrl } from "@/utils/apiUtil";
 const QuizView = () => {
   const { id } = useParams();
   const { user } = useContext(userContext)
+  const navigate = useNavigate()
   const [slideIndex, setSlideIndex] = useState(-1);
   const [quizDetails, setQuizDetails] = useState(undefined);
   const [questions, setQuestions] = useState(undefined);
@@ -48,6 +49,10 @@ const QuizView = () => {
   };
 
   useEffect(() => {
+    if (!user) {
+      navigate("/quiz")
+    }
+
     if (id && !quizDetails) {
       fetchQuiz();
     }
