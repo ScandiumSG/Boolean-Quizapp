@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
 function QuizViewResults({results}) {
-
+  console.log(results)
   const missedCorrectAnswers = (data) => {
-    if (data.highestPossibleScore && data.correct) {
+    if (data.highestPossibleScore) {
       return (data.highestPossibleScore - data.correct)
     } else {
       return 0
