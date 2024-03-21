@@ -2,7 +2,7 @@ import "./LoginModal.css";
 import { useState, useContext } from "react";
 import { loginContext, userContext } from "@/contexts/contexts";
 import { useNavigate } from "react-router-dom";
-import { userHandlingUrl } from "@/utils/apiUtil";
+import { requestWithoutAuth, userHandlingUrl } from "@/utils/apiUtil";
 import { addToSessionStorage } from "@/utils/userUtils";
 
 const LoginModal = () => {
@@ -21,16 +21,7 @@ const LoginModal = () => {
   };
 
   const submitLogin = async () => {
-    const request = {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginCredentials),
-    };
-
-    await fetch(userHandlingUrl, request)
+    await fetch(userHandlingUrl, requestWithoutAuth(loginCredentials, "POST"))
       .then((res) => {
         if (res.ok) {
           return res.json();

@@ -15,7 +15,7 @@ function QuizViewQuestion({ question, onNextQuestion, isLastQuestion = false }) 
   };
 
   const onSubmit = () => {
-    onNextQuestion({ id: question.id, answers: userAnswers });
+    onNextQuestion({ id: question.id, answerOptionIds: userAnswers });
   };
 
   useEffect(() => {

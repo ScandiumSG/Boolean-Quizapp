@@ -7,13 +7,7 @@ function QuizList() {
   const [quizList, setQuizList] = useState([]);
 
   const fetchQuizList = async () => {
-    const request = {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-      },
-    };
-    await fetch(baseQuizUrl, request)
+    await fetch(baseQuizUrl)
       .then((res) => res.json())
       .then((res) => res.data)
       .then((res) => setQuizList([...res]));
