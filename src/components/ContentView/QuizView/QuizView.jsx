@@ -5,7 +5,7 @@ import QuizViewCover from "./QuizViewSlides/QuizViewCover";
 import QuizViewQuestion from "./QuizViewSlides/QuizViewQuestion/QuizViewQuestion";
 import QuizViewResults from "./QuizViewSlides/QuizViewResults";
 import { userContext } from "@/contexts/contexts";
-import { baseQuizUrl } from "@/utils/apiUtil";
+import { baseQuizUrl, requestData, requestWithoutData } from "@/utils/apiUtil";
 
 const QuizView = () => {
   const { id } = useParams();
@@ -15,18 +15,11 @@ const QuizView = () => {
   const [quizDetails, setQuizDetails] = useState(undefined);
   const [questions, setQuestions] = useState(undefined);
   const [userAnswers, setUserAnswers] = useState([]);
+  const [userQuizResults, setUserQuizResults] = useState({})
 
   const fetchQuiz = async () => {
-    const request = {
-        method: "GET",
-        headers: {
-            "authorization": `Bearer ${user.token}`,
-            "content-type": "application/json",
-        },
-    }
-
     try {
-      await fetch(`${baseQuizUrl}/${id}`, request)
+      await fetch(`${baseQuizUrl}/${id}`, requestWithoutData(user, "GET"))
         .then((res) => res.json())
         .then((res) => res.data)
         .then((res) => {
@@ -43,9 +36,16 @@ const QuizView = () => {
     setSlideIndex(slideIndex + 1);
   };
 
-  const submitQuiz = () => {
-    //TODO: connect to submit answers url and handle further
-    console.log(userAnswers);
+  const submitQuiz = async () => {
+    const dataPost = {
+      userId: user.id,
+      questions: userAnswers
+    }
+
+    await fetch(`${baseQuizUrl}/${id}`, requestData(user, dataPost, "POST"))
+      .then((res) => res.json())
+      .then((res) => res.data)
+      .then((res) => setUserQuizResults({...res}))
   };
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const QuizView = () => {
           case slideIndex === -1:
             return <QuizViewCover quizData={quizDetails} numQuestions={questions.length} onStartQuiz={() => setSlideIndex(slideIndex + 1)} />;
           case parseInt(slideIndex) === questions.length:
-            return <QuizViewResults />;
+            return <QuizViewResults results={userQuizResults}/>;
           default:
             return (
               <QuizViewQuestion
