@@ -45,6 +45,10 @@
     transform: translateY(-50%);
 }
 
+.navigationbar-container > .account-login-container {
+    transform: scale(0.9);
+}
+
 @media (max-width: 768px) {
 
     .navigationbar-container > .logo-container {
