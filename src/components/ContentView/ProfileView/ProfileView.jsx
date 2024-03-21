@@ -9,6 +9,7 @@ const ProfileView = () => {
   const navigate = useNavigate();
 
   const onLogOut = () => {
+    sessionStorage.clear("user_session_data");
     setUser(null);
     navigate("/");
   };
