@@ -11,7 +11,7 @@ const RegisterUser = () => {
     password: "",
     role: 0,
   });
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState([]);
   const navigate = useNavigate();
   const { setShowLogin } = useContext(loginContext);
 
@@ -20,18 +20,22 @@ const RegisterUser = () => {
   };
 
   const handleRegister = async () => {
-    let error = "";
+    let error = [];
     let errorTriggered = false;
-    if (profileData.email === "") {
-      error = "Email address is required.\n";
+    if (profileData.email === "" || !profileData.email.includes("@")) {
+      error.push("Email address is required.");
       errorTriggered = true;
     }
     if (profileData.username === "") {
-      error += "Username is required.\n";
+      error.push("Username is required.");
       errorTriggered = true;
     }
     if (profileData.password.length < 6) {
-      error += "Password must be atleast 6 characters.\n";
+      error.push("Password must be atleast 6 characters.");
+      errorTriggered = true;
+    }
+    if (!(/[a-z]/).test(profileData.password)) {
+      error.push("Password must have atleast 1 lower case letter from a-z.");
       errorTriggered = true;
     }
     if (errorTriggered) {
@@ -74,7 +78,14 @@ const RegisterUser = () => {
         <input name="user_username" id="username" type="text" value={profileData.username} onChange={(e) => handleChange(e)} />
         <label>Your password:</label>
         <input name="user_password" id="password" type="password" value={profileData.password} onChange={(e) => handleChange(e)} />
-        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+        {errorMessage.length !== 0 && errorMessage.map((error, index) => 
+          <p 
+            key={index}
+            style={{ color: "red" }}
+          >
+            {error}
+          </p>
+        )}
         <button onClick={() => handleRegister()}>
           <span>Register</span>
         </button>
