@@ -62,7 +62,7 @@ const CreateQuiz = () => {
   const [quizData, setQuizData] = useState(
     generateEmptyTemplate(primaryFields)
   );
-  const [errorMessage, setErrorMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState([])
   const { user } = useContext(userContext)
   const navigate = useNavigate()
 
@@ -142,11 +142,12 @@ const CreateQuiz = () => {
     data = {...data, "userId": user.id}
     
     const validation = validateData(data)
-    if (validation !== "") {
+    if (validation.length > 0) {
       setErrorMessage(validation)
       return;
+    } else {
+      setErrorMessage([])
     }
-
 
     await fetch(manageQuizUrl, requestData(user, data, "POST"))
       .then((res) => res.json())
@@ -230,7 +231,14 @@ const CreateQuiz = () => {
         {" "}
         Add another question!{" "}
       </button>
-      {errorMessage !== "" && <p style={{color: "red"}}>{errorMessage}</p>}
+      {errorMessage.length > 0 && errorMessage.map((error, index) => 
+        <p 
+          key={index}
+          style={{color: "red"}}
+        >
+          {error}
+        </p>
+      )}
       <button className="submit-quiz-button" onClick={() => submitQuiz()}>
         {" "}
         Submit the quiz!{" "}

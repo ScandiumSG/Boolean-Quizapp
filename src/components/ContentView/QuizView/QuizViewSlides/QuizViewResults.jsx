@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
 function QuizViewResults({ results }) {
-  console.log(results);
+
   const missedCorrectAnswers = (data) => {
     if (data.highestPossibleScore > 0) {
       return data.highestPossibleScore - data.correct;
@@ -42,7 +42,7 @@ function QuizViewResults({ results }) {
             {
               data: [
                 { id: 0, value: results.correct, label: "Correct", color: "green" },
-                { id: 1, value: missedCorrectAnswers(results.correct), label: "Missed", color: "yellow" },
+                { id: 1, value: missedCorrectAnswers(results), label: "Missed", color: "yellow" },
                 { id: 2, value: results.wrong, label: "Incorrect", color: "red" },
               ],
               highlightScope: { faded: "global", highlighted: "item" },
@@ -54,6 +54,7 @@ function QuizViewResults({ results }) {
           {...sizing}
         />
       )}
+
       <div className="quiz-view-results-footer">
         <button className="quiz-btn" onClick={() => navigate("/")}>
           Exit
