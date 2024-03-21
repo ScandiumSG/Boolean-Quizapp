@@ -38,9 +38,9 @@
     border: 6px solid var(--bob-blue);
 }
 
-.navigationbar-container > .account-icon-container {
+.navigationbar-container > .account-icon-container, .navigationbar-container > .right-navigation-container {
     position: absolute;
-    right: 1rem;
+    right: 1.2rem;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -49,7 +49,7 @@
     transform: scale(0.85);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
 
     .navigationbar-container > .logo-container {
         padding-top: 2.5px;
@@ -80,6 +80,10 @@
 
     .navigationbar-container > .account-login-container {
         transform: scale(0.79);
+    }
+
+    .navigationbar-container > .right-navigation-container {
+        right: 0.5rem;
     }
     
 }

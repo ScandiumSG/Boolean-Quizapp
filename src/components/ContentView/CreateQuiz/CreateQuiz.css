@@ -32,7 +32,6 @@
 .add-question-button {
     margin: auto;
     position: relative;
-    left: 20px;
     display: flex;
     justify-content: center;
 }
@@ -58,5 +57,5 @@
 .submit-quiz-button {
     position: relative;
     float: right;
-    margin-bottom: 40px;
+    margin: 1rem 0.4rem;
 }

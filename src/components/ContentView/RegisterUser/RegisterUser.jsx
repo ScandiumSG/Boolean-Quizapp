@@ -34,7 +34,7 @@ const RegisterUser = () => {
       error.push("Password must be atleast 6 characters.");
       errorTriggered = true;
     }
-    if (!(/[a-z]/).test(profileData.password)) {
+    if (!/[a-z]/.test(profileData.password)) {
       error.push("Password must have atleast 1 lower case letter from a-z.");
       errorTriggered = true;
     }
@@ -78,14 +78,12 @@ const RegisterUser = () => {
         <input name="user_username" id="username" type="text" value={profileData.username} onChange={(e) => handleChange(e)} />
         <label>Your password:</label>
         <input name="user_password" id="password" type="password" value={profileData.password} onChange={(e) => handleChange(e)} />
-        {errorMessage.length !== 0 && errorMessage.map((error, index) => 
-          <p 
-            key={index}
-            style={{ color: "red" }}
-          >
-            {error}
-          </p>
-        )}
+        {errorMessage.length !== 0 &&
+          errorMessage.map((error, index) => (
+            <p key={index} style={{ color: "red" }} className="error-message">
+              {error}
+            </p>
+          ))}
         <button onClick={() => handleRegister()}>
           <span>Register</span>
         </button>

@@ -12,7 +12,7 @@ const NavigationBar = () => {
     <nav className="navigationbar-container">
       <Link to="/quiz" className="logo-container">
         <h1 className="logo-text">Bob&apos;s</h1>
-        <img src={logoUrl} className="logo-img" />
+        <img src={logoUrl} alt="bob" className="logo-img" />
         <h1 className="logo-text">BrainBox</h1>
       </Link>
       <UserInteractionContainer user={user} />
