@@ -36,10 +36,7 @@ function QuizList() {
           {quizList.map((quizItem, index) => 
             <QuizListItem
               key={index}
-              title={quizItem.title}
-              description={quizItem.description}
-              numQuestions={quizItem.length}
-              authorName={quizItem.userName}
+              quizItem={quizItem}
             />
           )}
         </div>
