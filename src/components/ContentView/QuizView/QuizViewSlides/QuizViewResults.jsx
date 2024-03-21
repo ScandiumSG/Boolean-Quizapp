@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
 function QuizViewResults({results}) {
-  console.log(results)
+
   const missedCorrectAnswers = (data) => {
     if (data.highestPossibleScore > 0) {
       return (data.highestPossibleScore - data.correct)
@@ -23,17 +23,17 @@ function QuizViewResults({results}) {
   return (
     <div className="menu-panel standalone quiz-view-results">
           <h3 className="quiz-view-results-header">Your total score was: {results.score}</h3>
-          <span> 
+          <p> 
             You got {results.correct}/{results.highestPossibleScore} correct!
-          </span><br/>
-          {missedCorrectAnswers(results) > 0 && <span>`You missed ${missedCorrectAnswers(results)} correct answer options.`</span>}
+          </p>
+          {missedCorrectAnswers(results) > 0 && <p>You missed {missedCorrectAnswers(results)} correct answer options.</p>}
           {results.highestPossibleScore && 
             <PieChart 
               series={[
                 {
                   data: [
                     { id: 0, value: results.correct, label: "Correct", color: 'green'},
-                    { id: 1, value: missedCorrectAnswers(results.correct), label: "Missed", color: 'yellow'},
+                    { id: 1, value: missedCorrectAnswers(results), label: "Missed", color: 'yellow'},
                     { id: 2, value: results.wrong, label: "Incorrect", color: 'red'}
                   ],
                   highlightScope: { faded: 'global', highlighted: 'item' },
