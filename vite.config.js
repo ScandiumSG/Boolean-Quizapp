@@ -35,7 +35,7 @@ const pwaManifest = {
       purpose:'any maskable',
     }
   ],
-  theme_color:'#171717',
+  theme_color:'#1b1ead',
   background_color:'#f0e7db',
   display:"standalone",
   scope:'/',
