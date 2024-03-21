@@ -15,3 +15,8 @@
 .profile-view-container > input[type="text"], .profile-view-container > input[type="email"] {
     width: 100%;
 }
+
+.profile-view-container > #logout-btn {
+    margin-top: 1.2rem;
+    background-color: var(--primary-text-color);
+}
