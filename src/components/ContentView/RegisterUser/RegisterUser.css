@@ -1,21 +1,33 @@
 .register-user-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     text-align: left;
-    width: 90%;
+}
+
+.register-user-container > h2 {
+    width: 60%;
+    font-size: 1.8rem;
+    text-transform: capitalize;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 .register-user-fields {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.25rem;
     text-align: left;
     width: 80%;
 }
 
 .register-user-fields > button {
     margin-top: 40px;
+    width: 10rem;
+    margin-bottom: 2rem;
 }
 
 .register-user-fields > input[type="text"], 
