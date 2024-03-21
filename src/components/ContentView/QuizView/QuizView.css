@@ -24,6 +24,20 @@
     box-shadow: 0 0 5px var(--primary-text-color);
 }
 
+.quiz-view-cover > .quiz-view-cover-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
+.quiz-view-cover > .quiz-view-cover-header > #delete-btn {
+    background-color: red;
+    color: white;
+}
+
 
 .quiz-view-cover > #quiz-title {
     font-size: 2.1rem;
@@ -49,6 +63,11 @@
 .quiz-view-cover > .quiz-view-cover-footer > p {
     font-weight: lighter;
     font-size: 0.9rem;
+}
+
+.quiz-view-results {
+    margin: auto;
+    width: 90%;
 }
 
 .quiz-view-results > .quiz-view-results-header {

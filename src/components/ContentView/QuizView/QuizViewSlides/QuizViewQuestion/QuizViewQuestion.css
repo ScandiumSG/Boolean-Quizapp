@@ -40,6 +40,7 @@
     border-radius: 0.5rem;
     padding: 1rem;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .quiz-question-option:hover {
@@ -72,7 +73,6 @@
     text-align: left;
     text-wrap: wrap;
     word-wrap: break-word;
-    word-break: break-all;
     height: fit-content;
     user-select: none;
 }
@@ -84,5 +84,17 @@
 @media (max-width: 1000px) {
     .quiz-view-question > .quiz-question-header > #quiz-question-text {
         margin: 0 2rem 2rem 2rem;
+    }
+
+    .quiz-question-options {
+        grid-template-columns: 95%;
+    }
+
+    .quiz-question-options {
+        padding: 0.25rem;
+    }
+
+    .quiz-question-option > p {
+        font-size: 0.8rem;
     }
 }

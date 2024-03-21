@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function QuizViewResults({results}) {
 
   const missedCorrectAnswers = (data) => {
-    if (data.highestPossibleScore && data.correct) {
+    if (data.highestPossibleScore > 0) {
       return (data.highestPossibleScore - data.correct)
     } else {
       return 0
@@ -22,17 +22,18 @@ function QuizViewResults({results}) {
   let navigate = useNavigate();
   return (
     <div className="menu-panel standalone quiz-view-results">
-          <h3 className="quiz-view-results-header">You got {results.correct}/{results.highestPossibleScore} correct!</h3>
-          <p> Your total score was: {results.score}
-            {missedCorrectAnswers(results) > 0 ? `You missed ${missedCorrectAnswers(results)} correct answer options.` : ""}
+          <h3 className="quiz-view-results-header">Your total score was: {results.score}</h3>
+          <p> 
+            You got {results.correct}/{results.highestPossibleScore} correct!
           </p>
-          {results.correct && 
+          {missedCorrectAnswers(results) > 0 && <p>You missed {missedCorrectAnswers(results)} correct answer options.</p>}
+          {results.highestPossibleScore && 
             <PieChart 
               series={[
                 {
                   data: [
                     { id: 0, value: results.correct, label: "Correct", color: 'green'},
-                    { id: 1, value: missedCorrectAnswers(results.correct), label: "Missed", color: 'yellow'},
+                    { id: 1, value: missedCorrectAnswers(results), label: "Missed", color: 'yellow'},
                     { id: 2, value: results.wrong, label: "Incorrect", color: 'red'}
                   ],
                   highlightScope: { faded: 'global', highlighted: 'item' },

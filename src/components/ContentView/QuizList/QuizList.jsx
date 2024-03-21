@@ -10,7 +10,8 @@ function QuizList() {
     await fetch(baseQuizUrl)
       .then((res) => res.json())
       .then((res) => res.data)
-      .then((res) => setQuizList([...res]));
+      .then((res) => setQuizList([...res]))
+      .catch(() => console.error("Error fetching quiz feed."));
   };
 
   useEffect(() => {
@@ -18,7 +19,7 @@ function QuizList() {
   }, []);
 
   if (quizList.length === 0) {
-    return <div style={{ display: "flex", marginTop: "50px" }}>Loading...</div>;
+    return <div className="page-loading">Loading...</div>;
   }
 
   return (
@@ -29,12 +30,9 @@ function QuizList() {
       <h2 className="menu-header">Latest Quizzes</h2>
       <div className="menu-panel">
         <div className="quiz-list">
-          {quizList.map((quizItem, index) => 
-            <QuizListItem
-              key={index}
-              quizItem={quizItem}
-            />
-          )}
+          {quizList.map((quizItem, index) => (
+            <QuizListItem key={index} quizItem={quizItem} />
+          ))}
         </div>
       </div>
     </>
