@@ -1,4 +1,4 @@
-import { userRegisterUrl } from "@/utils/apiUtil";
+import { requestWithoutAuth, userRegisterUrl } from "@/utils/apiUtil";
 import "./RegisterUser.css";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -43,15 +43,7 @@ const RegisterUser = () => {
       return;
     }
 
-    const request = {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(profileData),
-    };
-
-    await fetch(userRegisterUrl, request)
+    await fetch(userRegisterUrl, requestWithoutAuth(profileData, "POST"))
       .then((res) => {
         if (res.ok) {
           navigate("/quiz");

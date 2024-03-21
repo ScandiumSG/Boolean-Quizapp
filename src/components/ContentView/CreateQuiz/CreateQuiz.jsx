@@ -7,7 +7,7 @@ import QuizInputQuestionField from "./QuizInputQuestionField/QuizInputQuestionFi
 import { useNavigate } from "react-router-dom";
 import { userContext } from "@/contexts/contexts";
 import { validateData } from "@/utils/postUtils";
-import { manageQuizUrl } from "@/utils/apiUtil";
+import { manageQuizUrl, requestData } from "@/utils/apiUtil";
 
 const primaryFields = {
   title: "Quiz title",
@@ -147,17 +147,8 @@ const CreateQuiz = () => {
       return;
     }
 
-    const request = {
-      method: "POST",
-      headers: {
-        "accept": "*/*",
-        "Authorization": `Bearer ${user.token}`,
-        "content-type": "application/json"
-      },
-      body: JSON.stringify(data)
-    }
 
-    await fetch(manageQuizUrl, request)
+    await fetch(manageQuizUrl, requestData(user, data, "POST"))
       .then((res) => res.json())
       .then((res) => console.log(res))
     navigate("/quiz")
