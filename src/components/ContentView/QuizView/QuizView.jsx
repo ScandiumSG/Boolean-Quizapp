@@ -1,53 +1,37 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./QuizView.css";
 import { useParams } from "react-router-dom";
 import QuizViewCover from "./QuizViewSlides/QuizViewCover";
 import QuizViewQuestion from "./QuizViewSlides/QuizViewQuestion/QuizViewQuestion";
 import QuizViewResults from "./QuizViewSlides/QuizViewResults";
+import { userContext } from "@/contexts/contexts";
+import { baseQuizUrl } from "@/utils/apiUtil";
 
 const QuizView = () => {
   const { id } = useParams();
+  const { user } = useContext(userContext)
   const [slideIndex, setSlideIndex] = useState(-1);
   const [quizDetails, setQuizDetails] = useState(undefined);
   const [questions, setQuestions] = useState(undefined);
   const [userAnswers, setUserAnswers] = useState([]);
 
-  const setMockQuizData = () => {
-    setQuizDetails({ id: 1, userId: "4d2b9157-8675-4f83-a2a1-5b2d261167da", title: "Math Quiz", description: "Test your math skills" });
-    setQuestions([
-      {
-        id: 1,
-        text: "What is 2 + 2? (plus additional test to see if long titles look ok)",
-        order: 0,
-        answerOptions: [
-          {
-            id: 1,
-            text: "4",
-          },
-          { id: 2, text: "3" },
-          { id: 3, text: "666" },
-          { id: 4, text: "22" },
-          { id: 5, text: "78598569859" },
-        ],
-      },
-      {
-        id: 2,
-        text: "What is the capital of France?",
-        order: 1,
-        answerOptions: [
-          { id: 6, text: "Paris" },
-          { id: 7, text: "London" },
-        ],
-      },
-    ]);
-  };
-
   const fetchQuiz = async () => {
+    const request = {
+        method: "GET",
+        headers: {
+            "authorization": `Bearer ${user.token}`,
+            "content-type": "application/json",
+        },
+    }
+
     try {
-      const response = await fetch("https://bobbb.azurewebsites.net/play/quiz/" + id);
-      const quiz = await response.json();
-      setQuizDetails({ title: quiz.data.title, description: quiz.data.description, userId: quiz.data.userId });
-      setQuestions(quiz.data.questions);
+      await fetch(`${baseQuizUrl}/${id}`, request)
+        .then((res) => res.json())
+        .then((res) => res.data)
+        .then((res) => {
+            setQuizDetails({...res})
+            setQuestions([...res.questions])
+        })
     } catch (error) {
       console.error("Error fetching quiz: " + error);
     }
@@ -65,8 +49,7 @@ const QuizView = () => {
 
   useEffect(() => {
     if (id && !quizDetails) {
-      //TODO: change to fetchQuiz()
-      setMockQuizData();
+      fetchQuiz();
     }
   }, []);
 

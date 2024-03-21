@@ -10,7 +10,7 @@ function QuizViewCover({ quizData, numQuestions, onStartQuiz }) {
       </button>
       <div className="quiz-view-cover-footer">
         <p id="quiz-num-questions">{numQuestions + " Questions"}</p>
-        <p id="quiz-autjhor">{"By " + quizData.userId}</p>
+        <p id="quiz-author">{"By " + quizData.userName}</p>
       </div>
     </div>
   );
