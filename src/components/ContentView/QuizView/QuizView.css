@@ -67,12 +67,17 @@
 
 .quiz-view-results {
     margin: auto;
-    width: 90%;
+    width: 75%;
 }
 
-.quiz-view-results > .quiz-view-results-header {
-    font-size: 3rem;
-    width: 50%;
+.quiz-view-results > .text-group > .quiz-view-results-header {
+    font-size: 2.5rem;
+    width: 100%;
+}
+
+.quiz-view-results > .text-group > #total-score {
+    font-size: 1.8rem;
+    color: var(--primary-text-color)
 }
 
 .quiz-view-results > .quiz-view-results-footer {
@@ -89,6 +94,15 @@
         width: 95%;
         padding-top: 3rem;
     }
+
+    .quiz-view-results {
+        width: 95%;
+    }
+
+    .quiz-view-results > .quiz-view-results-header {
+        font-size: 2rem;
+    }
+
     .quiz-view-cover > .quiz-view-cover-footer {
         flex-direction: column;
         gap: 1rem;
