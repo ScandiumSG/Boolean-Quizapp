@@ -1,0 +1,37 @@
+.account-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    left: calc(100vw - 90px);
+    top: 15px;
+
+    width: 40px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid white;
+    background-color: white;
+
+    cursor: pointer;
+}
+
+.right-navigation-container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: fit-content;
+
+    position: relative;
+    top: 0px;
+    left: calc(50vw - calc(180px/2));
+
+    margin-top: 5px;
+}
+
+.account-container-create-quiz {
+    margin-right: 10px;
+    padding: 5px;
+    background-color: darkgreen;
+}

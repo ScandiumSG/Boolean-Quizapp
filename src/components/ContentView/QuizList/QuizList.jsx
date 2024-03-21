@@ -35,9 +35,12 @@ function QuizList() {
       <h2 className="menu-header">Latest Quizzes</h2>
       <div className="menu-panel">
         <div className="quiz-list">
-          {quizList.map((quizItem, index) => (
-            <QuizListItem key={index} title={quizItem.title} description={quizItem.description} numQuestions={quizItem.length} authorName={quizItem.userName} />
-          ))}
+          {quizList.map((quizItem, index) => 
+            <QuizListItem
+              key={index}
+              quizItem={quizItem}
+            />
+          )}
         </div>
       </div>
     </>
