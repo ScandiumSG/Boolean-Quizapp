@@ -23,10 +23,11 @@ function QuizViewResults({results}) {
   return (
     <div className="menu-panel standalone quiz-view-results">
           <h3 className="quiz-view-results-header">You got {results.correct}/{results.highestPossibleScore} correct!</h3>
-          <p> Your total score was: {results.score}
-            {missedCorrectAnswers(results) > 0 ? `You missed ${missedCorrectAnswers(results)} correct answer options.` : ""}
+          <p> 
+            Your total score was: {results.score}
+            {missedCorrectAnswers(results) > 0 ? ` You missed ${missedCorrectAnswers(results)} correct answer options.` : ""}
           </p>
-          {results.correct && 
+          {results.highestPossibleScore && 
             <PieChart 
               series={[
                 {
