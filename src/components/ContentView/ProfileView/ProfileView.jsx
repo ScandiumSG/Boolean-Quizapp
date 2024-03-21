@@ -1,9 +1,22 @@
 import "./ProfileView.css";
-import { useContext } from "react";
-import { userContext } from "@/contexts/contexts";
+import { useContext, useEffect } from "react";
+import { loginContext, userContext } from "@/contexts/contexts";
 
 const ProfileView = () => {
   const { user } = useContext(userContext);
+  const { setShowLogin } = useContext(loginContext)
+
+  useEffect(() => {
+    if (!user || user === null) {
+      setShowLogin(true)
+    }
+  }, [])
+
+  if (!user) {
+    return (
+      <div> Loading ...</div>
+    )
+  }
 
   return (
     <>

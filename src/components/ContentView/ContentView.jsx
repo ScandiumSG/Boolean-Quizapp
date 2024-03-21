@@ -16,12 +16,12 @@ const ContentView = () => {
       <div className={showLogin ? "content-view-container blurred" : "content-view-container"}>
         {showLogin && <LoginModal />}
         <Routes>
-          <Route path="" element={<Navigate replace to="quiz" />} />
           <Route path="quiz" element={<QuizList />} />
           <Route path="profile" element={<ProfileView />} />
           <Route path="register" element={<RegisterUser />} />
           <Route path="quiz/:id" element={<QuizView />} />
           <Route path="quiz/new" element={<CreateQuiz />} />
+          <Route path="*" element={<Navigate replace to="quiz" />} />
         </Routes>
       </div>
     </div>

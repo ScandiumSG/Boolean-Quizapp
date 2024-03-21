@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import "./CreateQuiz.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import QuizInputField from "./QuizInputField/QuizInputField";
 import QuizInputMetaField from "./QuizInputMetaField/QuizInputMetaField";
 import QuizInputQuestionField from "./QuizInputQuestionField/QuizInputQuestionField";
@@ -162,6 +162,12 @@ const CreateQuiz = () => {
       .then((res) => console.log(res))
     navigate("/quiz")
   }
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/quiz")
+    }
+  }, [])
 
   if (!quizData) {
     return <div>Loading...</div>;
