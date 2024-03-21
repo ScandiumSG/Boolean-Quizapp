@@ -6,6 +6,7 @@ export const userHandlingUrl = "https://bobbb.azurewebsites.net/User/login"
 
 export const userRegisterUrl = "https://bobbb.azurewebsites.net/User/register"
 
+
 export const requestData = (user, data, method) => {
     const request = {
         method: method,
