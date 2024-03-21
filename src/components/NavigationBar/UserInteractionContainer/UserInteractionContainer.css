@@ -3,10 +3,6 @@
     justify-content: center;
     align-items: center;
 
-    position: relative;
-    left: calc(100vw - 90px);
-    top: 15px;
-
     width: 40px;
     height: 30px;
     border-radius: 50%;

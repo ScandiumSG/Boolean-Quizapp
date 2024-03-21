@@ -51,6 +51,11 @@
     font-size: 0.9rem;
 }
 
+.quiz-view-results {
+    margin: auto;
+    width: 90%;
+}
+
 .quiz-view-results > .quiz-view-results-header {
     font-size: 3rem;
     width: 50%;

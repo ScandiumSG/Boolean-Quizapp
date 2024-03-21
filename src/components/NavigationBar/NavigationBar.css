@@ -46,7 +46,10 @@
 }
 
 .navigationbar-container > .account-login-container {
-    transform: scale(0.85);
+    position: absolute;
+    transform: scale(0.85) translateX(-50%);
+    right: 1.5rem;
+    margin-top: 0.7rem;
 }
 
 @media (max-width: 1200px) {
@@ -65,9 +68,10 @@
     }
 
     .navigationbar-container > .logo-container > .logo-text {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         width: auto;
         margin-right: 0.5rem;
+        text-wrap: nowrap;
     }
 
     .navigationbar-container > .logo-container > .logo-text:first-child {
@@ -79,11 +83,43 @@
     }
 
     .navigationbar-container > .account-login-container {
-        transform: scale(0.79);
+        transform: scale(0.8);
+        right: 1.6rem;
     }
 
     .navigationbar-container > .right-navigation-container {
         right: 0.5rem;
     }
     
+}
+
+
+@media (max-width: 500px) {
+    .navigationbar-container > .logo-container {
+        justify-content: start;
+    }
+
+    .navigationbar-container > .logo-container > .logo-img {
+        margin-top: 0.2rem;
+        height: 110%;
+    }
+
+    .navigationbar-container > .logo-container > .logo-text {
+        font-size: 1.05rem;
+        width: 50%;
+        text-wrap: wrap;
+        text-align: left;
+        margin: 0;
+    }
+
+    .navigationbar-container > .account-login-container {
+        transform: scale(0.8);
+        right: 1.5rem;
+    }
+
+    .navigationbar-container > .right-navigation-container {
+        right: 0;
+        top: 1.3rem;
+        transform: scale(0.9) translateY(-50%);
+    }
 }
