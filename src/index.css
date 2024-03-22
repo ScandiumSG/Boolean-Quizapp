@@ -137,7 +137,10 @@ button:focus-visible {
 
 .scroll-container {
   overflow: scroll;
-  scrollbar-width: thin;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
 }
 
 .blurred {
