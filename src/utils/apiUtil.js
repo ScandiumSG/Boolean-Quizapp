@@ -1,10 +1,12 @@
-export const baseQuizUrl = "https://bobbb.azurewebsites.net/play/quiz"
+const backendHost = "https://bobbb.azurewebsites.net/"
 
-export const manageQuizUrl = "https://bobbb.azurewebsites.net/Build/quiz"
+export const baseQuizUrl = backendHost+"play/quiz"
 
-export const userHandlingUrl = "https://bobbb.azurewebsites.net/User/login"
+export const manageQuizUrl = backendHost+"Build/quiz"
 
-export const userRegisterUrl = "https://bobbb.azurewebsites.net/User/register"
+export const userHandlingUrl = backendHost+"User/login"
+
+export const userRegisterUrl = backendHost+"User/register"
 
 
 export const requestData = (user, data, method) => {
