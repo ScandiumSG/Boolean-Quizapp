@@ -1,4 +1,4 @@
-const backendHost = "https://bobbb.azurewebsites.net/"
+const backendHost = import.meta.env.VITE_BACKEND_URL;
 
 export const baseQuizUrl = backendHost+"play/quiz"
 
