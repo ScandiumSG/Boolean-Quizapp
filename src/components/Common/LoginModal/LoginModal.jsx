@@ -20,7 +20,14 @@ const LoginModal = () => {
     setLoginCredentials({ ...loginCredentials, [e.target.id]: e.target.value });
   };
 
-  const submitLogin = async () => {
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      submitLogin(e)
+    }
+  }
+
+  const submitLogin = async (e) => {
+    e.preventDefault()
     await fetch(userHandlingUrl, requestWithoutAuth(loginCredentials, "POST"))
       .then((res) => {
         if (res.ok) {
@@ -45,12 +52,12 @@ const LoginModal = () => {
         <div>
           <label htmlFor="login-modal-email">Email:</label>
           <br />
-          <input type="email" id="email" name="login-modal-email" value={loginCredentials.email} onChange={(e) => handleChanges(e)} />
+          <input type="email" id="email" name="login-modal-email" autoFocus={true} value={loginCredentials.email} onChange={(e) => handleChanges(e)}/>
         </div>
         <div>
           <label htmlFor="login-modal-email">Password:</label>
           <br />
-          <input type="password" id="password" name="login-modal-email" value={loginCredentials.password} onChange={(e) => handleChanges(e)} />
+          <input type="password" id="password" name="login-modal-email" value={loginCredentials.password} onChange={(e) => handleChanges(e)} onKeyDown={(e) => handleKeyDown(e)}/>
         </div>
       </div>
       <span className={showError ? "error-message-active" : "error-message-hidden"}>Invalid login credentials</span>
@@ -64,7 +71,7 @@ const LoginModal = () => {
         Register new user
       </span>
       <div className="login-modal-button-container">
-        <button onClick={() => submitLogin()}>
+        <button onClick={(e) => submitLogin(e)}>
           <span>Login</span>
         </button>
         <button onClick={() => setShowLogin(false)}>
