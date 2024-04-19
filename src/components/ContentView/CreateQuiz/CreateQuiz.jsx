@@ -162,7 +162,7 @@ const CreateQuiz = () => {
   }, [])
 
   if (!quizData) {
-    return <div>Loading...</div>;
+    return <div><img src="/loading.svg" alt="Loading indicator"/></div>;
   }
 
   return (

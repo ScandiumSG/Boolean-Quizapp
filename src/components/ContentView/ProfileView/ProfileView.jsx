@@ -21,7 +21,7 @@ const ProfileView = () => {
   }, []);
 
   if (!user) {
-    return <div> Loading ...</div>;
+    return <div><img src="/loading.svg" alt="Loading indicator"/></div>;
   }
 
   return (
