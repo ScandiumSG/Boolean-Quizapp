@@ -19,7 +19,7 @@ function QuizList() {
   }, []);
 
   if (quizList.length === 0) {
-    return <div className="page-loading">Loading...</div>;
+    return <div className="page-loading"><img src="/loading.svg" alt="Loading indicator"/></div>;
   }
 
   return (

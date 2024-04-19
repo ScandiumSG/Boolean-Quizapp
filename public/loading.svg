@@ -1,0 +1,37 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 200 200"
+  width="200"
+  height="200"
+>
+  <!-- Loading Element -->
+  <g id="loading-element">
+    <!-- Outer Circle for Loading Animation -->
+    <circle
+      cx="100"
+      cy="100"
+      r="40"
+      stroke="#1b1ead"
+      stroke-width="5"
+      fill="none"
+      stroke-dasharray="150,200"
+      transform="rotate(0 100 100)"
+    >
+      <animateTransform
+        attributeName="transform"
+        attributeType="XML"
+        type="rotate"
+        from="0 100 100"
+        to="360 100 100"
+        dur="2s"
+        repeatCount="indefinite"
+      />
+    </circle>
+    <!-- Inner Circle with Loading Text -->
+    <circle cx="100" cy="100" r="35" fill="#1b1ead" />
+    <!-- Centered Text -->
+    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="16" fill="#ffffff">Loading</text>
+  </g>
+</svg>
+

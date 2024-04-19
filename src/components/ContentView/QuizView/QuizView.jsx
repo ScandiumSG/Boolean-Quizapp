@@ -68,7 +68,7 @@ const QuizView = () => {
   return (
     <>
       {(() => {
-        if (!quizDetails || !questions) return <div className="page-loading">Loading...</div>;
+        if (!quizDetails || !questions) return <div className="page-loading"><img src="/loading.svg" alt="Loading indicator"/></div>;
         switch (true) {
           case slideIndex === -1:
             return <QuizViewCover quizData={quizDetails} numQuestions={questions.length} onStartQuiz={() => setSlideIndex(slideIndex + 1)} />;
