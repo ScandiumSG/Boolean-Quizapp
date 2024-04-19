@@ -31,6 +31,7 @@
     <!-- Inner Circle with Loading Text -->
     <circle cx="100" cy="100" r="35" fill="#1b1ead" />
     <!-- Centered Text -->
-    <text x="50%" y="50%" text-anchor="middle" alignment-baseline="middle" font-family="Arial" font-size="16" fill="#ffffff">Loading</text>
+    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="16" fill="#ffffff">Loading</text>
   </g>
 </svg>
+
